@@ -20,6 +20,7 @@ public class Commitments {
         commitments.add(new Commitment("dailymeditation", Frequency.Daily));
         commitments.add(new Commitment("rosary", Frequency.Daily));
         commitments.add(new Commitment("confession", Frequency.Monthly));
+        commitments.add(new Commitment("angelus", Frequency.Monthly));
     }
 
     public List<Commitment> getCommitments() {
