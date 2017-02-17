@@ -3,6 +3,7 @@ package domain;
 import android.content.Context;
 import android.content.res.Resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,15 +16,19 @@ public class Commitments {
 
     public Commitments()
     {
-        commitments.add(new Commitment("mornigoffering", Frequency.Daily));
-        commitments.add(new Commitment("nightprayers", Frequency.Daily));
-        commitments.add(new Commitment("dailymeditation", Frequency.Daily));
-        commitments.add(new Commitment("rosary", Frequency.Daily));
-        commitments.add(new Commitment("confession", Frequency.Monthly));
-        commitments.add(new Commitment("angelus", Frequency.Monthly));
+        this.commitments = new ArrayList<>();
+
+        commitments.add(new Commitment("mornigoffering", Commitment.Frequency.Daily));
+        commitments.add(new Commitment("nightprayers", Commitment.Frequency.Daily));
+        commitments.add(new Commitment("dailymeditation", Commitment.Frequency.Daily));
+        commitments.add(new Commitment("rosary", Commitment.Frequency.Daily));
+        commitments.add(new Commitment("confession", Commitment.Frequency.Monthly));
+        commitments.add(new Commitment("angelus", Commitment.Frequency.Monthly));
     }
 
     public List<Commitment> getCommitments() {
-        return commitments;
+        List<Commitment> copy = new ArrayList<>();
+        copy.addAll(this.commitments);
+        return copy;
     }
 }

@@ -9,8 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import domain.Commitment;
-import domain.Frequency;
+import domain.Commitments;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     @Override
