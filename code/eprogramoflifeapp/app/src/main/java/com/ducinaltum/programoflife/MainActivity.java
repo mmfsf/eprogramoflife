@@ -8,7 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Commitment;
 import domain.Commitments;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +36,27 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Commitments commitments = new Commitments();
+
+        List<String> data = new ArrayList<>();
+        for (Commitment c: commitments.getCommitments()) {
+            int id = getResources().getIdentifier(c.getDescription(), "string", getPackageName());
+            data.add(getString(id));
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, data);
+        final ListView listView = (ListView) findViewById(R.id.lvCommitments);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckedTextView textView = (CheckedTextView)view;
+                textView.setChecked(!textView.isChecked());
+            }
+        });
+
     }
 
     @Override
