@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 
 public class Commitment {
-    public enum Frequency { Daily, Weekly, Biweekly, Monthly }
+    public enum Frequency { Daily, Weekly, Biweekly, Monthly, Yarly }
     public enum Level { Done, Partially, NotDone }
 
     private String description;
@@ -36,8 +36,20 @@ public class Commitment {
         return this.performed;
     }
 
+    //Use this method to update values too
     public void Point(Date date, Level level)
     {
         this.performed.put(date, level);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Commitment)o).getDescription() == this.description &&
+               ((Commitment)o).getFrequency() == this.frequency;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.description.hashCode() + this.frequency.hashCode();
     }
 }

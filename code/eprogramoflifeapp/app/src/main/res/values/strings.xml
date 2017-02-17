@@ -6,6 +6,10 @@
     <string name="nightprayers">Night Prayers</string>
     <string name="dailymeditation">Daily Meditation</string>
     <string name="rosary">Rosary</string>
-    <string name="confession">Confession</string>
+    <string name="reconciliation">Reconciliation</string>
     <string name="angelus">Angelus</string>
+    <string name="visityeucharist">Visit  to the Eucharist</string>
+    <string name="eucharistichour">Eucharistic hour of adoration and reparation</string>
+    <string name="reflection">Morning or evening of reflection</string>
+    <string name="triduum">Triduum of renewal</string>
 </resources>
