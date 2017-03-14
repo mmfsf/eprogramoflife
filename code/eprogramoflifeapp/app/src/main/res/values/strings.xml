@@ -12,4 +12,8 @@
     <string name="eucharistichour">Eucharistic hour of adoration and reparation</string>
     <string name="reflection">Morning or evening of reflection</string>
     <string name="triduum">Triduum of renewal</string>
+
+    <string name="level_done">Done</string>
+    <string name="level_partially">Partially</string>
+    <string name="level_notdone">Not Done</string>
 </resources>

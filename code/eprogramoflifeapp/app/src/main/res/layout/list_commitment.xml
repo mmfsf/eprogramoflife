@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
 
     <TextView
-        android:text="TextView"
+        android:text="Commitment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/tvDescription" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <CheckBox
-        android:text="CheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox" />
+        <CheckBox
+            android:text="@string/level_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cbDone" />
 
-    <CheckBox
-        android:text="CheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox2" />
+        <CheckBox
+            android:text="@string/level_partially"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cbPartialy" />
 
-    <CheckBox
-        android:text="CheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox3" />
+        <CheckBox
+            android:text="@string/level_notdone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cbNotDone" />
+    </LinearLayout>
+
+
 </LinearLayout>

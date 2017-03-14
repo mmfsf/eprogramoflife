@@ -3,10 +3,8 @@ package com.ducinaltum.programoflife;
 import org.junit.Test;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import domain.Commitment;
-import domain.Commitments;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,7 +18,7 @@ public class CommitmentUnitTest {
     @Test
     public void commitment_isWorking() {
         Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
-        assertEquals(c.getDescription(), "newcommitment");
+        assertEquals(c.getName(), "newcommitment");
         assertEquals(c.getFrequency(), Commitment.Frequency.Monthly);
         assertEquals(c.getPerformed().size(), 0);
     }

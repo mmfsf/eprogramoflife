@@ -1,5 +1,6 @@
 package com.ducinaltum.programoflife;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
@@ -20,6 +22,7 @@ import domain.Commitment;
 import domain.Commitments;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String dataFileName = "data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         Commitments commitments = new Commitments();
 
-        List<String> data = new ArrayList<>();
         for (Commitment c: commitments.getCommitments()) {
-            int id = getResources().getIdentifier(c.getDescription(), "string", getPackageName());
-            data.add(getString(id));
+            int id = getResources().getIdentifier(c.getName(), "string", getPackageName());
+            c.setDescription(getString(id));
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, data);
+        List<Commitment> list = new ArrayList<>(commitments.getCommitments());
+
+        CommitmentsAdapter adapter = new CommitmentsAdapter(this, R.layout.list_commitment, list);
         final ListView listView = (ListView) findViewById(R.id.lvCommitments);
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView textView = (CheckedTextView)view;
-                textView.setChecked(!textView.isChecked());
-            }
-        });
 
     }
 
