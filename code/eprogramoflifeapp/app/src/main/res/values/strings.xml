@@ -16,4 +16,6 @@
     <string name="level_done">Done</string>
     <string name="level_partially">Partially</string>
     <string name="level_notdone">Not Done</string>
+
+    <string name="date_format">MM-dd-yyyy</string>
 </resources>

@@ -31,6 +31,12 @@ public class Commitments {
         return copy;
     }
 
+    public HashSet<Commitment> getCommitmentsOfTheDay(String key) {
+        HashSet<Commitment> copy = new HashSet<>();
+        copy.addAll(this.commitments);
+        return copy;
+    }
+
     public void addCommitment(String name, Commitment.Frequency frequency) {
         this.commitments.add(new Commitment(name, frequency));
     }

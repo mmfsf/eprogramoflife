@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -15,7 +14,7 @@ public class Commitment {
     private String description;
     private Frequency frequency;
 
-    private HashMap<Date, Level> performed;
+    private HashMap<String, Level> performed;
 
     public Commitment(String name, Frequency frequency) {
         this.name = name;
@@ -36,15 +35,15 @@ public class Commitment {
         return frequency;
     }
 
-    public HashMap<Date, Level> getPerformed()
+    public HashMap<String, Level> getPerformed()
     {
         return this.performed;
     }
 
     //Use this method to update values too
-    public void Point(Date date, Level level)
+    public void Point(String key, Level level)
     {
-        this.performed.put(date, level);
+        this.performed.put(key, level);
     }
 
     @Override

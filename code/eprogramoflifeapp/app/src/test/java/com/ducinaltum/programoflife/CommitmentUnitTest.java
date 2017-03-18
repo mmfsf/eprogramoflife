@@ -2,6 +2,7 @@ package com.ducinaltum.programoflife;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import domain.Commitment;
@@ -15,6 +16,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class CommitmentUnitTest {
 
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
     @Test
     public void commitment_isWorking() {
         Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
@@ -26,19 +29,19 @@ public class CommitmentUnitTest {
     @Test
     public void commitment_addPerformed() {
         Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
-        c.Point(new Date(), Commitment.Level.Done);
+        c.Point(sdf.format(new Date()), Commitment.Level.Done);
         assertEquals(c.getPerformed().size(), 1);
     }
 
     @Test
     public void commitment_updatePerformed() {
         Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
-        Date d = new Date();
-        c.Point(d, Commitment.Level.Done);
+        String key = sdf.format(new Date());
+        c.Point(key, Commitment.Level.Done);
         assertEquals(c.getPerformed().size(), 1);
-        assertEquals(c.getPerformed().get(d), Commitment.Level.Done);
+        assertEquals(c.getPerformed().get(key), Commitment.Level.Done);
 
-        c.Point(d, Commitment.Level.NotDone);
-        assertEquals(c.getPerformed().get(d), Commitment.Level.NotDone);
+        c.Point(key, Commitment.Level.NotDone);
+        assertEquals(c.getPerformed().get(key), Commitment.Level.NotDone);
     }
 }
