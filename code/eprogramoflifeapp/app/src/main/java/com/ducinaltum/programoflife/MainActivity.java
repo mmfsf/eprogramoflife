@@ -1,10 +1,11 @@
 package com.ducinaltum.programoflife;
 
 //import android.app.DialogFragment;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -12,13 +13,11 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,13 +25,18 @@ import java.util.List;
 
 import domain.Commitment;
 import domain.Commitments;
-
-import android.support.v4.app.DialogFragment;
+import domain.InternalStorage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String dataFileName = "data";
+
+    public static SimpleDateFormat sdfView;
     public static SimpleDateFormat sdf;
-    public Commitments commitments = new Commitments();
+    public static String key;
+
+    private Commitments commitments;
+    private CommitmentsAdapter adapter;
+    private List<Commitment> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +54,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sdf = new SimpleDateFormat(getString(R.string.date_format));
+        sdf = new SimpleDateFormat("yyyyMMdd");
+        sdfView = new SimpleDateFormat(getString(R.string.date_format));
 
         TextView tvDate = (TextView)findViewById(R.id.tvDate);
-        tvDate.setText(sdf.format(new Date()));
+        tvDate.setText(sdfView.format(new Date()));
+        key = sdf.format(new Date());
+
+        try {
+            commitments = (Commitments)InternalStorage.readObject(this, "KEY");
+        }
+        catch (IOException ex)
+        {
+            commitments = new Commitments();
+            Toast.makeText(this, "OnCreateErro", Toast.LENGTH_SHORT).show();
+        }
+        catch (ClassNotFoundException e){
+            commitments = new Commitments();
+        }
 
         for (Commitment c: commitments.getCommitments()) {
             int id = getResources().getIdentifier(c.getName(), "string", getPackageName());
             c.setDescription(getString(id));
         }
 
-        List<Commitment> list = new ArrayList<>(commitments.getCommitments());
+        list = new ArrayList<>(commitments.getCommitments());
 
-        CommitmentsAdapter adapter = new CommitmentsAdapter(this, R.layout.list_commitment, list);
+        adapter = new CommitmentsAdapter(this, R.layout.list_commitment, list);
         final ListView listView = (ListView) findViewById(R.id.lvCommitments);
         listView.setAdapter(adapter);
 
         configTextViewDateChangeListener();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            InternalStorage.writeObject(this, "KEY", commitments);
+        }
+        catch (IOException e)
+        {
+            Toast.makeText(this, "OnPauseErro", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(commitments == null) {
+            try {
+                commitments = (Commitments) InternalStorage.readObject(this, "KEY");
+            } catch (IOException ex) {
+                commitments = new Commitments();
+                Toast.makeText(this, "OnResumeIOErro", Toast.LENGTH_SHORT).show();
+            } catch (ClassNotFoundException e) {
+                commitments = new Commitments();
+                Toast.makeText(this, "OnResumeClassErro", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -110,8 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String key = tvDate.getText().toString().replace("-", "");
-                List<Commitment> list = new ArrayList<>(commitments.getCommitmentsOfTheDay(key));
+                adapter.notifyDataSetChanged();
             }
         });
     }

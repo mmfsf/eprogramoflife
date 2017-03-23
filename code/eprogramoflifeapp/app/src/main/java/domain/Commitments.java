@@ -1,12 +1,13 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 /**
  * Created by marcosfarias on 2/12/17.
  */
 
-public class Commitments {
+public class Commitments implements Serializable {
 
     private HashSet<Commitment> commitments;
 
@@ -26,15 +27,7 @@ public class Commitments {
     }
 
     public HashSet<Commitment> getCommitments() {
-        HashSet<Commitment> copy = new HashSet<>();
-        copy.addAll(this.commitments);
-        return copy;
-    }
-
-    public HashSet<Commitment> getCommitmentsOfTheDay(String key) {
-        HashSet<Commitment> copy = new HashSet<>();
-        copy.addAll(this.commitments);
-        return copy;
+        return this.commitments;
     }
 
     public void addCommitment(String name, Commitment.Frequency frequency) {

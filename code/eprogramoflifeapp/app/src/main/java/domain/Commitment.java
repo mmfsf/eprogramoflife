@@ -1,12 +1,13 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by marcosfarias on 2/12/17.
  */
 
-public class Commitment {
+public class Commitment implements Serializable {
     public enum Frequency { Daily, Weekly, Biweekly, Monthly, Yarly }
     public enum Level { Done, Partially, NotDone }
 
@@ -35,9 +36,14 @@ public class Commitment {
         return frequency;
     }
 
-    public HashMap<String, Level> getPerformed()
+    public Level getPerformed(String key)
     {
-        return this.performed;
+        Level l = this.performed.get(key);
+        if(l == null)
+        {
+            l = Level.NotDone;
+        }
+        return l;
     }
 
     //Use this method to update values too

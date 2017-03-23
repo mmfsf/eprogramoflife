@@ -15,23 +15,28 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:text="@string/level_done"
-            android:layout_width="wrap_content"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cbDone" />
+            android:orientation="horizontal"
+            android:id="@+id/rgCommitmentLevel">
+            <RadioButton android:id="@+id/rbDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"/>
+            <RadioButton android:id="@+id/rbPartially"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Partially"/>
+            <RadioButton android:id="@+id/rbNotDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Not done"/>
+        </RadioGroup>
 
-        <CheckBox
-            android:text="@string/level_partially"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbPartialy" />
-
-        <CheckBox
-            android:text="@string/level_notdone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbNotDone" />
     </LinearLayout>
 
 

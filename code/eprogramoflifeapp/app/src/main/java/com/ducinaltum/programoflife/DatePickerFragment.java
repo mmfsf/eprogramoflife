@@ -39,6 +39,8 @@ public class DatePickerFragment extends DialogFragment
 
         final Calendar c = Calendar.getInstance();
         c.set(year, month, day);
-        tvDate.setText(MainActivity.sdf.format(c.getTime()));
+
+        tvDate.setText(MainActivity.sdfView.format(c.getTime()));
+        MainActivity.key = MainActivity.sdf.format(c.getTime());
     }
 }
