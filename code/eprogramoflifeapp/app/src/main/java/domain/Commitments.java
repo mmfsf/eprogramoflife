@@ -14,16 +14,16 @@ public class Commitments implements Serializable {
     public Commitments() {
         this.commitments = new HashSet<>();
 
-        commitments.add(new Commitment("mornigoffering", Commitment.Frequency.Daily));
-        commitments.add(new Commitment("nightprayers", Commitment.Frequency.Daily));
-        commitments.add(new Commitment("dailymeditation", Commitment.Frequency.Daily));
-        commitments.add(new Commitment("rosary", Commitment.Frequency.Daily));
-        commitments.add(new Commitment("reconciliation", Commitment.Frequency.Monthly));
-        commitments.add(new Commitment("angelus", Commitment.Frequency.Monthly));
-        commitments.add(new Commitment("visityeucharist", Commitment.Frequency.Daily));
-        commitments.add(new Commitment("eucharistichour", Commitment.Frequency.Weekly));
-        commitments.add(new Commitment("reflection", Commitment.Frequency.Monthly));
-        commitments.add(new Commitment("triduum", Commitment.Frequency.Yarly));
+        commitments.add(new DailyCommitment("mornigoffering", Commitment.Frequency.Daily));
+        commitments.add(new DailyCommitment("nightprayers", Commitment.Frequency.Daily));
+        commitments.add(new DailyCommitment("dailymeditation", Commitment.Frequency.Daily));
+        commitments.add(new DailyCommitment("rosary", Commitment.Frequency.Daily));
+        commitments.add(new DailyCommitment("visityeucharist", Commitment.Frequency.Daily));
+        commitments.add(new WeeklyCommitment("eucharistichour", Commitment.Frequency.Weekly));
+        commitments.add(new MonthlyCommitment("reconciliation", Commitment.Frequency.Monthly));
+        commitments.add(new MonthlyCommitment("angelus", Commitment.Frequency.Monthly));
+        commitments.add(new MonthlyCommitment("reflection", Commitment.Frequency.Monthly));
+        commitments.add(new YarlyCommitment("triduum", Commitment.Frequency.Yarly));
     }
 
     public HashSet<Commitment> getCommitments() {
@@ -31,7 +31,7 @@ public class Commitments implements Serializable {
     }
 
     public void addCommitment(String name, Commitment.Frequency frequency) {
-        this.commitments.add(new Commitment(name, frequency));
+        this.commitments.add(new DailyCommitment(name, frequency));
     }
 
     public void addCommitment(Commitment commitment) {

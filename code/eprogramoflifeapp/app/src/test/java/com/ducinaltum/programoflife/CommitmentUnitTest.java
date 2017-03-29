@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import domain.Commitment;
+import domain.MonthlyCommitment;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,28 +21,27 @@ public class CommitmentUnitTest {
 
     @Test
     public void commitment_isWorking() {
-        Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
+        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
         assertEquals(c.getName(), "newcommitment");
         assertEquals(c.getFrequency(), Commitment.Frequency.Monthly);
-        assertEquals(c.getPerformed().size(), 0);
     }
 
     @Test
     public void commitment_addPerformed() {
-        Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
-        c.Point(sdf.format(new Date()), Commitment.Level.Done);
-        assertEquals(c.getPerformed().size(), 1);
+        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
+        String key = sdf.format(new Date());
+        c.Point(key, Commitment.Level.Done);
+        assertEquals(c.getPerformed(key), Commitment.Level.Done);
     }
 
     @Test
     public void commitment_updatePerformed() {
-        Commitment c = new Commitment("newcommitment", Commitment.Frequency.Monthly);
+        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
         String key = sdf.format(new Date());
         c.Point(key, Commitment.Level.Done);
-        assertEquals(c.getPerformed().size(), 1);
-        assertEquals(c.getPerformed().get(key), Commitment.Level.Done);
+        assertEquals(c.getPerformed(key), Commitment.Level.Done);
 
         c.Point(key, Commitment.Level.NotDone);
-        assertEquals(c.getPerformed().get(key), Commitment.Level.NotDone);
+        assertEquals(c.getPerformed(key), Commitment.Level.NotDone);
     }
 }

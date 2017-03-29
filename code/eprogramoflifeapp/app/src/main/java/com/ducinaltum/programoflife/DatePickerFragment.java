@@ -41,6 +41,6 @@ public class DatePickerFragment extends DialogFragment
         c.set(year, month, day);
 
         tvDate.setText(MainActivity.sdfView.format(c.getTime()));
-        MainActivity.key = MainActivity.sdf.format(c.getTime());
+        MainActivity.key = c.getTime();
     }
 }

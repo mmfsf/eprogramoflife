@@ -1,21 +1,24 @@
 package domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
  * Created by marcosfarias on 2/12/17.
  */
 
-public class Commitment implements Serializable {
+public abstract class Commitment implements Serializable {
     public enum Frequency { Daily, Weekly, Biweekly, Monthly, Yarly }
     public enum Level { Done, Partially, NotDone }
 
-    private String name;
-    private String description;
-    private Frequency frequency;
+    protected String name;
+    protected String description;
+    protected Frequency frequency;
 
-    private HashMap<String, Level> performed;
+    protected HashMap<String, Level> performed;
+    protected SimpleDateFormat simpleDateFormat;
 
     public Commitment(String name, Frequency frequency) {
         this.name = name;
@@ -36,21 +39,9 @@ public class Commitment implements Serializable {
         return frequency;
     }
 
-    public Level getPerformed(String key)
-    {
-        Level l = this.performed.get(key);
-        if(l == null)
-        {
-            l = Level.NotDone;
-        }
-        return l;
-    }
+    public abstract Level getPerformed(Date date);
 
-    //Use this method to update values too
-    public void Point(String key, Level level)
-    {
-        this.performed.put(key, level);
-    }
+    public abstract void Point(Date date, Level level);
 
     @Override
     public boolean equals(Object o) {

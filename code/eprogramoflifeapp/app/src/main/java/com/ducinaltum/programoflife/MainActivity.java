@@ -28,11 +28,10 @@ import domain.Commitments;
 import domain.InternalStorage;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String dataFileName = "data";
+    private static final String dataFileName = "DATA";
 
     public static SimpleDateFormat sdfView;
-    public static SimpleDateFormat sdf;
-    public static String key;
+    public static Date key;
 
     private Commitments commitments;
     private CommitmentsAdapter adapter;
@@ -54,15 +53,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sdf = new SimpleDateFormat("yyyyMMdd");
         sdfView = new SimpleDateFormat(getString(R.string.date_format));
+        key = new Date();
 
         TextView tvDate = (TextView)findViewById(R.id.tvDate);
-        tvDate.setText(sdfView.format(new Date()));
-        key = sdf.format(new Date());
+        tvDate.setText(sdfView.format(key));
 
         try {
-            commitments = (Commitments)InternalStorage.readObject(this, "KEY");
+            commitments = (Commitments)InternalStorage.readObject(this, dataFileName);
         }
         catch (IOException ex)
         {
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         try {
-            InternalStorage.writeObject(this, "KEY", commitments);
+            InternalStorage.writeObject(this, dataFileName, commitments);
         }
         catch (IOException e)
         {
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if(commitments == null) {
             try {
-                commitments = (Commitments) InternalStorage.readObject(this, "KEY");
+                commitments = (Commitments) InternalStorage.readObject(this, dataFileName);
             } catch (IOException ex) {
                 commitments = new Commitments();
                 Toast.makeText(this, "OnResumeIOErro", Toast.LENGTH_SHORT).show();
