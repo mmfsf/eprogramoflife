@@ -29,7 +29,7 @@ public class CommitmentUnitTest {
     @Test
     public void commitment_addPerformed() {
         Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
-        String key = sdf.format(new Date());
+        Date key = new Date();
         c.Point(key, Commitment.Level.Done);
         assertEquals(c.getPerformed(key), Commitment.Level.Done);
     }
@@ -37,7 +37,7 @@ public class CommitmentUnitTest {
     @Test
     public void commitment_updatePerformed() {
         Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
-        String key = sdf.format(new Date());
+        Date key = new Date();
         c.Point(key, Commitment.Level.Done);
         assertEquals(c.getPerformed(key), Commitment.Level.Done);
 

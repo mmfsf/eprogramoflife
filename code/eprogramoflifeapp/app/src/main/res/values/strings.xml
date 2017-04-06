@@ -19,8 +19,6 @@
     <string name="level_notdone">Not Done</string>
 
     <string name="date_format">MM-dd-yyyy</string>
-    
+
     <string name="title_activity_settings">Settings</string>
-    <string name="settings_language">Chose language</string>
-    <string name="settings_language_key" translatable="false">list_preference_language</string>
 </resources>

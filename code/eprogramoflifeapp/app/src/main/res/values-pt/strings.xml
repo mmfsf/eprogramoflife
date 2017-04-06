@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Programa de vida</string>
+    <string name="action_about">Sobre</string>
+    <string name="angelus">Angelus</string>
+    <string name="dailymeditation">Meditação diária</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="eucharistichour">Hora Eucarística</string>
+    <string name="level_done">Cumpri</string>
+    <string name="level_notdone">Não cumpri</string>
+    <string name="level_partially">Parcialmente</string>
+    <string name="mornigoffering">Oferecimento da manhã</string>
+    <string name="nightprayers">Orações da noite</string>
+    <string name="reconciliation">Confissão</string>
+    <string name="reflection">Reflexão diária</string>
+    <string name="rosary">Terço</string>
+    <string name="triduum">Tríduo de renovação</string>
+    <string name="visityeucharist">Visita Eucarística</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="settings_language"></string>
+</resources>

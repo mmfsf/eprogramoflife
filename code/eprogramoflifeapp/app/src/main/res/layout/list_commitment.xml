@@ -24,17 +24,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Done"/>
+                android:text="@string/level_done"/>
             <RadioButton android:id="@+id/rbPartially"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Partially"/>
+                android:text="@string/level_partially"/>
             <RadioButton android:id="@+id/rbNotDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Not done"/>
+                android:text="@string/level_notdone"/>
         </RadioGroup>
 
     </LinearLayout>
