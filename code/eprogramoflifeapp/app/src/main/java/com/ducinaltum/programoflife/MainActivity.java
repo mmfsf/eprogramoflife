@@ -1,6 +1,7 @@
 package com.ducinaltum.programoflife;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         sdfView = new SimpleDateFormat(getString(R.string.date_format));
         key = new Date();
 
@@ -64,15 +56,18 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException ex)
         {
             commitments = new Commitments();
-            Toast.makeText(this, "OnCreateErro", Toast.LENGTH_SHORT).show();
         }
         catch (ClassNotFoundException e){
             commitments = new Commitments();
         }
 
         for (Commitment c: commitments.getCommitments()) {
-            int id = getResources().getIdentifier(c.getName(), "string", getPackageName());
-            c.setDescription(getString(id));
+            int iddescription = getResources().getIdentifier(c.getName(), "string", getPackageName());
+            c.setDescription(getString(iddescription));
+
+            String frequency = "frequency_".concat(c.getFrequency().toString().toLowerCase());
+            int idfrequency = getResources().getIdentifier(frequency, "string", getPackageName());
+            c.setFrequencyDescription(getString(idfrequency));
         }
 
         list = new ArrayList<>(commitments.getCommitments());

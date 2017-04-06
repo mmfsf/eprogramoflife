@@ -9,8 +9,9 @@ import java.util.Date;
 
 public class MonthlyCommitment extends Commitment {
 
-    public MonthlyCommitment(String name, Frequency frequency) {
-        super(name, frequency);
+    public MonthlyCommitment(String name) {
+        super(name);
+        this.frequency = Frequency.Monthly;
         simpleDateFormat = new SimpleDateFormat("yyyyMM");
     }
 

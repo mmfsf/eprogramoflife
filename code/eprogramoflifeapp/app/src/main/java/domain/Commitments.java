@@ -14,16 +14,16 @@ public class Commitments implements Serializable {
     public Commitments() {
         this.commitments = new HashSet<>();
 
-        commitments.add(new DailyCommitment("mornigoffering", Commitment.Frequency.Daily));
-        commitments.add(new DailyCommitment("nightprayers", Commitment.Frequency.Daily));
-        commitments.add(new DailyCommitment("dailymeditation", Commitment.Frequency.Daily));
-        commitments.add(new DailyCommitment("rosary", Commitment.Frequency.Daily));
-        commitments.add(new DailyCommitment("visityeucharist", Commitment.Frequency.Daily));
-        commitments.add(new WeeklyCommitment("eucharistichour", Commitment.Frequency.Weekly));
-        commitments.add(new MonthlyCommitment("reconciliation", Commitment.Frequency.Monthly));
-        commitments.add(new MonthlyCommitment("angelus", Commitment.Frequency.Monthly));
-        commitments.add(new MonthlyCommitment("reflection", Commitment.Frequency.Monthly));
-        commitments.add(new YarlyCommitment("triduum", Commitment.Frequency.Yarly));
+        commitments.add(new DailyCommitment("mornigoffering"));
+        commitments.add(new DailyCommitment("nightprayers"));
+        commitments.add(new DailyCommitment("dailymeditation"));
+        commitments.add(new DailyCommitment("rosary"));
+        commitments.add(new DailyCommitment("visityeucharist"));
+        commitments.add(new WeeklyCommitment("eucharistichour"));
+        commitments.add(new MonthlyCommitment("reconciliation"));
+        commitments.add(new MonthlyCommitment("angelus"));
+        commitments.add(new MonthlyCommitment("reflection"));
+        commitments.add(new YearlyCommitment("triduum"));
     }
 
     public HashSet<Commitment> getCommitments() {
@@ -31,7 +31,23 @@ public class Commitments implements Serializable {
     }
 
     public void addCommitment(String name, Commitment.Frequency frequency) {
-        this.commitments.add(new DailyCommitment(name, frequency));
+        switch (frequency)
+        {
+            case Daily:
+                this.commitments.add(new DailyCommitment(name));
+                break;
+            case Weekly:
+                this.commitments.add(new WeeklyCommitment(name));
+                break;
+            case Biweekly:
+                break;
+            case Monthly:
+                this.commitments.add(new MonthlyCommitment(name));
+                break;
+            case Yearly:
+                this.commitments.add(new YearlyCommitment(name));
+                break;
+        }
     }
 
     public void addCommitment(Commitment commitment) {
@@ -40,6 +56,5 @@ public class Commitments implements Serializable {
 
     public void removeCommitment(Commitment commitment) {
         this.commitments.remove(commitment);
-
     }
 }

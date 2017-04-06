@@ -19,4 +19,9 @@
     <string name="action_settings">Configurações</string>
     <string name="title_activity_settings">Configurações</string>
     <string name="settings_language"></string>
+    <string name="frequency_daily">Diário</string>
+    <string name="frequency_weekly">Semenal</string>
+    <string name="frequency_biweekly">Quizenal</string>
+    <string name="frequency_monthly">Mensal</string>
+    <string name="frequency_yearly">Anual</string>
 </resources>

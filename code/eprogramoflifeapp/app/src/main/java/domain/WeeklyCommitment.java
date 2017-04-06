@@ -8,8 +8,9 @@ import java.util.Date;
  */
 
 public class WeeklyCommitment extends Commitment {
-    public WeeklyCommitment(String name, Frequency frequency) {
-        super(name, frequency);
+    public WeeklyCommitment(String name) {
+        super(name);
+        this.frequency = Frequency.Weekly;
     }
 
     public Level getPerformed(Date date)

@@ -7,7 +7,7 @@ import org.junit.Test;
 import domain.Commitment;
 import domain.Commitments;
 import domain.MonthlyCommitment;
-import domain.YarlyCommitment;
+import domain.YearlyCommitment;
 
 import static org.junit.Assert.*;
 
@@ -36,7 +36,7 @@ public class CommitmentsUnitTest {
     public void commitments_removeCommitment(){
         Commitments commitments = new Commitments();
 
-        commitments.removeCommitment(new YarlyCommitment("triduum", Commitment.Frequency.Yarly));
+        commitments.removeCommitment(new YearlyCommitment("triduum"));
         assertEquals(commitments.getCommitments().size(), 9);
     }
 
@@ -52,7 +52,7 @@ public class CommitmentsUnitTest {
     public void commitments_removeNonExistCommitment() {
         Commitments commitments = new Commitments();
 
-        commitments.removeCommitment(new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly));
+        commitments.removeCommitment(new MonthlyCommitment("newcommitment"));
         assertEquals(commitments.getCommitments().size(), 10);
     }
 }

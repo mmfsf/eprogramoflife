@@ -10,9 +10,10 @@ import java.util.StringTokenizer;
 
 public class DailyCommitment extends Commitment {
 
-    public DailyCommitment(String name, Frequency frequency)
+    public DailyCommitment(String name)
     {
-        super(name, frequency);
+        super(name);
+        this.frequency = Frequency.Daily;
         simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
     }
 

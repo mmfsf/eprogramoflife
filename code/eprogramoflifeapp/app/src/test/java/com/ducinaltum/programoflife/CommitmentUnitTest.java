@@ -21,14 +21,14 @@ public class CommitmentUnitTest {
 
     @Test
     public void commitment_isWorking() {
-        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
+        Commitment c = new MonthlyCommitment("newcommitment");
         assertEquals(c.getName(), "newcommitment");
         assertEquals(c.getFrequency(), Commitment.Frequency.Monthly);
     }
 
     @Test
     public void commitment_addPerformed() {
-        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
+        Commitment c = new MonthlyCommitment("newcommitment");
         Date key = new Date();
         c.Point(key, Commitment.Level.Done);
         assertEquals(c.getPerformed(key), Commitment.Level.Done);
@@ -36,7 +36,7 @@ public class CommitmentUnitTest {
 
     @Test
     public void commitment_updatePerformed() {
-        Commitment c = new MonthlyCommitment("newcommitment", Commitment.Frequency.Monthly);
+        Commitment c = new MonthlyCommitment("newcommitment");
         Date key = new Date();
         c.Point(key, Commitment.Level.Done);
         assertEquals(c.getPerformed(key), Commitment.Level.Done);

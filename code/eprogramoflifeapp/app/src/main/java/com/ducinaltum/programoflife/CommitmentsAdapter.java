@@ -46,12 +46,17 @@ public class CommitmentsAdapter extends ArrayAdapter<Commitment> {
 
         if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.tvDescription);
+            TextView tt2 = (TextView) v.findViewById(R.id.tvFrequency);
             RadioButton rbDone = (RadioButton) v.findViewById(R.id.rbDone);
             RadioButton rbPartially = (RadioButton) v.findViewById(R.id.rbPartially);
             RadioButton rbNotDone = (RadioButton) v.findViewById(R.id.rbNotDone);
 
             if (tt1 != null) {
                 tt1.setText(p.getDescription());
+            }
+
+            if(tt2 != null) {
+                tt2.setText(p.getFrequencyDescription());
             }
 
             final Commitment.Level level = p.getPerformed(MainActivity.key);

@@ -7,10 +7,11 @@ import java.util.Date;
  * Created by mmfsf on 3/29/17.
  */
 
-public class YarlyCommitment extends Commitment {
+public class YearlyCommitment extends Commitment {
 
-    public YarlyCommitment(String name, Frequency frequency) {
-        super(name, frequency);
+    public YearlyCommitment(String name) {
+        super(name);
+        this.frequency = Frequency.Yearly;
         simpleDateFormat = new SimpleDateFormat("yyyy");
     }
 

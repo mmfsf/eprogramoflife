@@ -10,19 +10,19 @@ import java.util.HashMap;
  */
 
 public abstract class Commitment implements Serializable {
-    public enum Frequency { Daily, Weekly, Biweekly, Monthly, Yarly }
+    public enum Frequency { Daily, Weekly, Biweekly, Monthly, Yearly }
     public enum Level { Done, Partially, NotDone }
 
     protected String name;
     protected String description;
     protected Frequency frequency;
+    protected String frequencyDescription;
 
     protected HashMap<String, Level> performed;
     protected SimpleDateFormat simpleDateFormat;
 
-    public Commitment(String name, Frequency frequency) {
+    public Commitment(String name) {
         this.name = name;
-        this.frequency = frequency;
 
         this.performed = new HashMap<>();
     }
@@ -37,6 +37,14 @@ public abstract class Commitment implements Serializable {
 
     public Frequency getFrequency() {
         return frequency;
+    }
+
+    public String getFrequencyDescription() {
+        return frequencyDescription;
+    }
+
+    public void setFrequencyDescription(String frequencyDescription) {
+        this.frequencyDescription = frequencyDescription;
     }
 
     public abstract Level getPerformed(Date date);

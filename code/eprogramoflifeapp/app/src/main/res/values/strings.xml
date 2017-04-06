@@ -18,6 +18,12 @@
     <string name="level_partially">Partially</string>
     <string name="level_notdone">Not Done</string>
 
+    <string name="frequency_daily">Daily</string>
+    <string name="frequency_weekly">Weekly</string>
+    <string name="frequency_biweekly">Biweekly</string>
+    <string name="frequency_monthly">Monthly</string>
+    <string name="frequency_yearly">Yearly</string>
+
     <string name="date_format">MM-dd-yyyy</string>
 
     <string name="title_activity_settings">Settings</string>
