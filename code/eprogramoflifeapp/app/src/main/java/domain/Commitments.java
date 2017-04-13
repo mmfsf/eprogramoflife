@@ -19,9 +19,9 @@ public class Commitments implements Serializable {
         commitments.add(new DailyCommitment("dailymeditation"));
         commitments.add(new DailyCommitment("rosary"));
         commitments.add(new DailyCommitment("visityeucharist"));
+        commitments.add(new DailyCommitment("angelus"));
         commitments.add(new WeeklyCommitment("eucharistichour"));
         commitments.add(new MonthlyCommitment("reconciliation"));
-        commitments.add(new MonthlyCommitment("angelus"));
         commitments.add(new MonthlyCommitment("reflection"));
         commitments.add(new YearlyCommitment("triduum"));
     }
