@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  epl.identityserver:
+    image: ${DOCKER_REGISTRY}eplidentityserver
+    build:
+      context: .
+      dockerfile: epl.IdentityServer/Dockerfile
+
+  epl.api:
+    image: ${DOCKER_REGISTRY}eplapi
+    build:
+      context: .
+      dockerfile: epl.api/Dockerfile
+
+  epl.ui:
+    image: ${DOCKER_REGISTRY}eplui
+    build:
+      context: .
+      dockerfile: epl.ui/Dockerfile
+

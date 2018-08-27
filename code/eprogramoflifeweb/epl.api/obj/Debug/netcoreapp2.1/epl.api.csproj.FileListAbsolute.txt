@@ -1,0 +1,15 @@
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\bin\Debug\netcoreapp2.1\epl.api.deps.json
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\bin\Debug\netcoreapp2.1\epl.api.runtimeconfig.json
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\bin\Debug\netcoreapp2.1\epl.api.runtimeconfig.dev.json
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\bin\Debug\netcoreapp2.1\epl.api.dll
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.csprojAssemblyReference.cache
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.csproj.CoreCompileInputs.cache
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.RazorAssemblyInfo.cache
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.RazorAssemblyInfo.cs
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.AssemblyInfoInputs.cache
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.AssemblyInfo.cs
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.RazorTargetAssemblyInfo.cache
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\bin\Debug\netcoreapp2.1\epl.api.pdb
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.dll
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\epl.api.pdb
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
