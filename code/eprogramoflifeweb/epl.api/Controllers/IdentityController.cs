@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace epl.api.Controllers
 {
-    [Route("identity")]
+    [Route("api/[controller]")]
     [Authorize]
     public class IdentityController : Controller
     {

@@ -6,16 +6,24 @@ services:
     build:
       context: .
       dockerfile: epl.IdentityServer/Dockerfile
+    networks:
+      - epl-network
 
   epl.api:
     image: ${DOCKER_REGISTRY}eplapi
     build:
       context: .
       dockerfile: epl.api/Dockerfile
+    networks:
+      - epl-network
 
   epl.ui:
     image: ${DOCKER_REGISTRY}eplui
     build:
       context: .
       dockerfile: epl.ui/Dockerfile
+    networks:
+      - epl-network
 
+networks:
+  epl-network:

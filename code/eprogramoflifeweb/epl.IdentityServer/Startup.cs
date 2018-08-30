@@ -19,6 +19,8 @@ namespace epl.IdentityServer
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients());
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +30,11 @@ namespace epl.IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => {
+                builder.WithOrigins("https://localhost:44386")
+                       .AllowAnyHeader();
+            });
 
             app.UseIdentityServer();
         }

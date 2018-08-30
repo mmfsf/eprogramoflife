@@ -1,7 +1,12 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+RUN apt-get update && \
+    apt-get install -y wget && \
+    apt-get install -y gnupg2 && \
+    wget -qO- https://deb.nodesource.com/setup_8.x | bash - && \
+    apt-get install -y build-essential nodejs
 WORKDIR /app
 EXPOSE 54139
-EXPOSE 44305
+EXPOSE 44386
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src

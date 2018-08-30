@@ -1,0 +1,53 @@
+services:
+  epl.api:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44355'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: eplapi
+    ports:
+    - published: 58960
+      target: 80
+    - published: 44355
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  epl.identityserver:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.IdentityServer/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44373'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: eplidentityserver
+    ports:
+    - published: 57519
+      target: 80
+    - published: 44373
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  epl.ui:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.ui/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44386'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: eplui
+    ports:
+    - published: 53849
+      target: 80
+    - published: 44386
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'

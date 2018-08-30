@@ -7,15 +7,16 @@ services:
       target: base
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_epl.api$
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api:/app
       - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
-#$nuget_volume_mapping_epl.api$
+      - C:\Users\mmfsf\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_epl.api$ bin/Debug/netcoreapp2.1/epl.api.dll"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.api.dll"
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
 
@@ -25,15 +26,16 @@ services:
       target: base
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_epl.identityserver$
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer:/app
       - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
-#$nuget_volume_mapping_epl.identityserver$
+      - C:\Users\mmfsf\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_epl.identityserver$ bin/Debug/netcoreapp2.1/epl.IdentityServer.dll"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.IdentityServer.dll"
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
 
@@ -44,15 +46,16 @@ services:
       target: base
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_epl.ui$
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui:/app
       - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
-#$nuget_volume_mapping_epl.ui$
+      - C:\Users\mmfsf\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_epl.ui$ bin/Debug/netcoreapp2.1/epl.ui.dll"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.ui.dll"
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/bash -c \"if PID=$$(pidof -x dotnet); then kill $$PID; fi\""
 

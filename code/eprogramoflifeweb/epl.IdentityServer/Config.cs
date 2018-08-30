@@ -12,7 +12,7 @@ namespace epl.IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("elp.api", "Program of Life API")
+                new ApiResource("epl.api", "Program of Life API")
             };
         }
 
@@ -28,10 +28,14 @@ namespace epl.IdentityServer
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "elp.api" }
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "https://localhost:44386"
+                    },
+                    AllowedScopes = { "epl.api" }
                 }
             };
         }
-            
+
     }
 }

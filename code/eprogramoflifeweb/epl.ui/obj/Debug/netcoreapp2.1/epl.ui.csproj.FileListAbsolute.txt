@@ -7,6 +7,7 @@ C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\n
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.csproj.CoreCompileInputs.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.RazorAssemblyInfo.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.RazorAssemblyInfo.cs
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.AssemblyInfoInputs.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.AssemblyInfo.cs
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui\obj\Debug\netcoreapp2.1\epl.ui.RazorTargetAssemblyInfo.cache

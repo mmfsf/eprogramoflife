@@ -1,0 +1,100 @@
+networks:
+  epl-network: {}
+services:
+  epl.api:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.api/Dockerfile
+      target: base
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44355'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: eplapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.api.dll'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/bash -c "if PID=$$(pidof
+        -x dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 58960
+      target: 80
+    - published: 44355
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.api:/app:rw
+    - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\mmfsf\.nuget\packages:/root/.nuget/packages:ro
+  epl.identityserver:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.IdentityServer/Dockerfile
+      target: base
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44373'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: eplidentityserver:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.IdentityServer.dll'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/bash -c "if PID=$$(pidof
+        -x dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 57519
+      target: 80
+    - published: 44373
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer:/app:rw
+    - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\mmfsf\.nuget\packages:/root/.nuget/packages:ro
+  epl.ui:
+    build:
+      context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
+      dockerfile: epl.ui/Dockerfile
+      target: base
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '44386'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: eplui:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  bin/Debug/netcoreapp2.1/epl.ui.dll'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/bash -c "if PID=$$(pidof
+        -x dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 53849
+      target: 80
+    - published: 44386
+      target: 443
+    volumes:
+    - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.ui:/app:rw
+    - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
+    - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\mmfsf\.nuget\packages:/root/.nuget/packages:ro
+version: '3.4'
