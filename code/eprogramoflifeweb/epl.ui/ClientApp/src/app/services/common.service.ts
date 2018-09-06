@@ -5,23 +5,16 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class CommonService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-  }
-
-  public GetToken(): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('/token', { observe: 'response' });
-  }
-
-  public GetIdentity(token): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('https://localhost:44355/api/identity', {
-      headers: { 'Authorization':'Bearer ' + token},
+  public GetIdentity(): Observable<HttpResponse<Object>> {
+    return this.http.get<Object>('https://localhost:6001/api/identity', {
       observe: 'response'
     });
   }
 
   public GetValues(): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('https://localhost:44355/api/values', {
+    return this.http.get<Object>('https://localhost:6001/api/values', {
       observe: 'response'
     });
   }

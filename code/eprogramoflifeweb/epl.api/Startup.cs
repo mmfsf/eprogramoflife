@@ -35,12 +35,19 @@ namespace epl.api
                 .AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "http://localhost:57519";
+                    options.Authority = "https://localhost:5001";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "epl.api";
                 });
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Devlopment",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,17 +55,13 @@ namespace epl.api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors("Devlopment");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
                 app.UseHsts();
             }
-
-            app.UseCors(builder => {
-                builder.WithOrigins("https://localhost:44386")
-                       .AllowAnyHeader();
-            });
 
             app.UseHttpsRedirection();
             app.UseAuthentication();

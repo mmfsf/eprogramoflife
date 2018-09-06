@@ -3,6 +3,7 @@ version: '3.4'
 services:
   epl.identityserver:
     image: ${DOCKER_REGISTRY}eplidentityserver
+    container_name: epl-identityserver
     build:
       context: .
       dockerfile: epl.IdentityServer/Dockerfile
@@ -11,17 +12,23 @@ services:
 
   epl.api:
     image: ${DOCKER_REGISTRY}eplapi
+    container_name: epl-api
     build:
       context: .
       dockerfile: epl.api/Dockerfile
+    depends_on:
+      - epl.identityserver
     networks:
       - epl-network
 
   epl.ui:
     image: ${DOCKER_REGISTRY}eplui
+    container_name: epl-ui
     build:
       context: .
       dockerfile: epl.ui/Dockerfile
+    depends_on:
+      - epl.identityserver
     networks:
       - epl-network
 

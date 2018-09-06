@@ -3,6 +3,7 @@ C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\bin\Debug\netcoreapp2.1\epl.IdentityServer.runtimeconfig.dev.json
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\bin\Debug\netcoreapp2.1\epl.IdentityServer.dll
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\bin\Debug\netcoreapp2.1\epl.IdentityServer.pdb
+C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.csprojAssemblyReference.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.csproj.CoreCompileInputs.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.RazorAssemblyInfo.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.RazorAssemblyInfo.cs
@@ -12,4 +13,3 @@ C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.RazorTargetAssemblyInfo.cache
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.dll
 C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.pdb
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer\obj\Debug\netcoreapp2.1\epl.IdentityServer.csprojAssemblyReference.cache

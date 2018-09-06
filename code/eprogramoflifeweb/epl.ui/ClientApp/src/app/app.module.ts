@@ -1,10 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 
+// Interceptors
+import { HttpBaseInterceptor } from './inteceptors/http-base.interceptor';
+
+// Services
 import { CommonService } from './services/common.service';
+import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +20,13 @@ import { CommonService } from './services/common.service';
     HttpClientModule
   ],
   providers: [
-    CommonService
+    CommonService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpBaseInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,9 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.api/Dockerfile
       target: base
+    container_name: epl-api
+    depends_on:
+    - epl.identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -21,6 +24,8 @@ services:
         -x dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      epl-network: null
     ports:
     - published: 58960
       target: 80
@@ -38,6 +43,7 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.IdentityServer/Dockerfile
       target: base
+    container_name: epl-identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -53,6 +59,8 @@ services:
         -x dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      epl-network: null
     ports:
     - published: 57519
       target: 80
@@ -62,7 +70,8 @@ services:
     - C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.IdentityServer:/app:rw
     - C:\Users\mmfsf\vsdbg\vs2017u5:/remote_debugger:ro
     - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\mmfsf\.aspnet\https:/root/.aspnet/https/:rw
+    - C:\Users\mmfsf\AppData\Roaming\microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
     - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
     - C:\Users\mmfsf\.nuget\packages:/root/.nuget/packages:ro
   epl.ui:
@@ -70,6 +79,9 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.ui/Dockerfile
       target: base
+    container_name: epl-ui
+    depends_on:
+    - epl.identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -85,6 +97,8 @@ services:
         -x dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      epl-network: null
     ports:
     - published: 53849
       target: 80

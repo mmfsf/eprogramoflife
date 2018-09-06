@@ -1,32 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+// Services
 import { CommonService } from './services/common.service'
+import { AuthService } from './services/auth.service'
+
+// Models
+import { Token } from './models/token.model'
+
+// Auth
+import { AuthToken } from './auth/auth-token';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {  
   title = 'ClientApp';
-  token = '';
 
-  constructor(private common: CommonService) { }
+  constructor(private common: CommonService, private auth: AuthService) { }
 
-  private GetToken() {
-    this.common.GetToken().subscribe(x => {
-      this.token = x.body.toString();
-    });
+  ngOnInit(): void {
+    this.auth.GetToken().subscribe(res => { AuthToken.Set(res.body); })
   }
 
   private GetIdentity() {
-    this.common.GetIdentity(this.token).subscribe(x => {
-      alert(x.body);
-    });
-  }
-
-  private GetValues() {
-    this.common.GetValues().subscribe(x => {
+    this.common.GetIdentity().subscribe(x => {
       alert(x.body);
     });
   }

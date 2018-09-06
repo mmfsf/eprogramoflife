@@ -6,6 +6,9 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.api/Dockerfile
       target: base
+    container_name: epl-api
+    depends_on:
+    - epl.identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -40,6 +43,7 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.IdentityServer/Dockerfile
       target: base
+    container_name: epl-identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -74,6 +78,9 @@ services:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.ui/Dockerfile
       target: base
+    container_name: epl-ui
+    depends_on:
+    - epl.identityserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development

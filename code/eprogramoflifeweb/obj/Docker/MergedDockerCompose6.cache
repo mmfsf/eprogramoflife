@@ -5,6 +5,9 @@ services:
     build:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.api/Dockerfile
+    container_name: epl-api
+    depends_on:
+    - epl.identityserver
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTPS_PORT: '44355'
@@ -24,6 +27,7 @@ services:
     build:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.IdentityServer/Dockerfile
+    container_name: epl-identityserver
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTPS_PORT: '44373'
@@ -38,11 +42,15 @@ services:
       target: 443
     volumes:
     - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\mmfsf\.aspnet\https:/root/.aspnet/https/:rw
+    - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
   epl.ui:
     build:
       context: C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb
       dockerfile: epl.ui/Dockerfile
+    container_name: epl-ui
+    depends_on:
+    - epl.identityserver
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTPS_PORT: '44386'

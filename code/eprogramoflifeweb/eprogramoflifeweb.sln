@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.IdentityServer", "epl.IdentityServer\epl.IdentityServer.csproj", "{84EA54D0-2A47-4C10-8E21-EAA72C0598F4}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{506C6074-00FA-42CE-BA01-24DF4C9FA0ED}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "epl.docker-compose", "epl.docker-compose.dcproj", "{506C6074-00FA-42CE-BA01-24DF4C9FA0ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.api", "epl.api\epl.api.csproj", "{E7198FC3-7D87-4F81-BAFC-96922244E66E}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7BA5EE15
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.core.test", "epl.core.test\epl.core.test.csproj", "{2EB419C1-26B5-4E31-8E58-867D5657AF0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epl.ui", "epl.ui\epl.ui.csproj", "{8CDA3AF5-DABF-4E8D-A734-4D11F6F5DA25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.ui", "epl.ui\epl.ui.csproj", "{8CDA3AF5-DABF-4E8D-A734-4D11F6F5DA25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

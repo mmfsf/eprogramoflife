@@ -1,9 +1,0 @@
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\bin\Debug\netcoreapp2.1\epl.core.deps.json
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\bin\Debug\netcoreapp2.1\epl.core.dll
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\bin\Debug\netcoreapp2.1\epl.core.pdb
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.csprojAssemblyReference.cache
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.csproj.CoreCompileInputs.cache
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.AssemblyInfoInputs.cache
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.AssemblyInfo.cs
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.dll
-C:\Users\mmfsf\gitmmfsf\eprogramoflife\code\eprogramoflifeweb\epl.core\obj\Debug\netcoreapp2.1\epl.core.pdb
