@@ -19,4 +19,10 @@ export class CommonService {
     });
   }
 
+  public GetCommitments(): Observable<HttpResponse<Object>> {
+    return this.http.get<Object>('https://localhost:6001/api/commitments', {
+      observe: 'response'
+    });
+  }
+
 }

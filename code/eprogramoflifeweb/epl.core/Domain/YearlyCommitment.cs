@@ -5,11 +5,13 @@ using System.Text;
 
 namespace epl.core.Domain
 {
-  class YearlyCommitment : Commitment
+  public class YearlyCommitment : Commitment
   {
+    protected override string KeyFormat { get => "yyyy"; }
+
     public YearlyCommitment(string name) : base(name)
     {
-      this.Frequency = Frequency.Daily;
+      this.Frequency = Frequency.Yearly;
     }
 
     public YearlyCommitment(string name, string description) : base(name, description)
@@ -17,9 +19,23 @@ namespace epl.core.Domain
       this.Frequency = Frequency.Daily;
     }
 
+    public override Level GetPoint(DateTime date)
+    {
+      var key = date.Date.ToString(this.KeyFormat);
+      return this.Performed.ContainsKey(key) ? this.Performed[key] : Level.NotDone;
+    }
+
     public override void Point(DateTime date, Level level)
     {
-      throw new NotImplementedException();
+      var key = date.Date.ToString(this.KeyFormat);
+      if (this.Performed.ContainsKey(key))
+      {
+        this.Performed[key] = level;
+      }
+      else
+      {
+        this.Performed.Add(key, level);
+      }
     }
 
   }

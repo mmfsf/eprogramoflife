@@ -17,4 +17,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\epl.core\epl.core.csproj" />
+    <ProjectReference Include="..\epl.infrastructure\epl.infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

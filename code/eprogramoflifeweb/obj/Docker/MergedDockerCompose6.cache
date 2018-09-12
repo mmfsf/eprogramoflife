@@ -42,7 +42,6 @@ services:
       target: 443
     volumes:
     - C:\Users\mmfsf\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\mmfsf\.aspnet\https:/root/.aspnet/https/:rw
     - C:\Users\mmfsf\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
   epl.ui:
     build:

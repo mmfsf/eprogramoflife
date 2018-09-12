@@ -1,18 +1,20 @@
-﻿using epl.core.ValuesObjects;
+﻿using epl.core.Interfaces;
+using epl.core.ValuesObjects;
 using System;
 using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-  public abstract class Commitment
+  public abstract class Commitment : IEntity
   {
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public Frequency Frequency { get; set; }
     public Level Level { get; set; }
     protected abstract string KeyFormat { get; }
 
-    public Dictionary<string, Level> Performed { get; private set; }
+    public IDictionary<string, Level> Performed { get; private set; }
 
     public Commitment(string name)
     {

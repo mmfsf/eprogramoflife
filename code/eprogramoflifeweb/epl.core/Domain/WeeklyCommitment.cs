@@ -1,15 +1,17 @@
 ﻿using epl.core.ValuesObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 
 namespace epl.core.Domain
 {
-  class WeeklyCommitment : Commitment
+  public class WeeklyCommitment : Commitment
   {
+    protected override string KeyFormat { get => "yyyy"; }
+
     public WeeklyCommitment(string name) : base(name)
     {
-      this.Frequency = Frequency.Daily;
+      this.Frequency = Frequency.Weekly;
     }
 
     public WeeklyCommitment(string name, string description) : base(name, description)
@@ -17,9 +19,26 @@ namespace epl.core.Domain
       this.Frequency = Frequency.Daily;
     }
 
+    public override Level GetPoint(DateTime date)
+    {
+      var week = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+      var key = $"{date.ToString(this.KeyFormat)}-{week}";
+      return this.Performed.ContainsKey(key) ? this.Performed[key] : Level.NotDone;
+    }
+
     public override void Point(DateTime date, Level level)
     {
-      throw new NotImplementedException();
+      var week = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+      var key = $"{date.ToString(this.KeyFormat)}-{week}";
+      
+      if (this.Performed.ContainsKey(key))
+      {
+        this.Performed[key] = level;
+      }
+      else
+      {
+        this.Performed.Add(key, level);
+      }
     }
 
   }
