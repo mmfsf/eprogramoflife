@@ -44,8 +44,7 @@ namespace epl.api
                   .AllowCredentials());
       });
 
-      var connection = @"";
-      services.AddDbContext<CommitmentsContext>(options => options.UseSqlServer(connection));
+      services.AddDbContext<CommitmentsContext>(options => options.UseInMemoryDatabase("epldatabase"));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
