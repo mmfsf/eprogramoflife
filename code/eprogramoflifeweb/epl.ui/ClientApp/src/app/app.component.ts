@@ -24,8 +24,14 @@ export class AppComponent implements OnInit {
     this.auth.GetToken().subscribe(res => { AuthToken.Set(res.body); })
   }
 
-  private GetIdentity() {
-    this.common.GetIdentity().subscribe(x => {
+  private GetCommitments() {
+    this.common.GetCommitments().subscribe(x => {
+      alert(x.body);
+    });
+  }
+
+  private UpdateCommitments() {
+    this.common.Point().subscribe(x => {
       alert(x.body);
     });
   }

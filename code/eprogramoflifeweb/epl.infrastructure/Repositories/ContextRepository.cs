@@ -20,6 +20,7 @@ namespace epl.infrastructure.Repositories
     public T Add(T entity)
     {
       this.Context.Add<T>(entity);
+      this.Context.SaveChanges();
       return entity;
     }
 
@@ -28,29 +29,36 @@ namespace epl.infrastructure.Repositories
       return this.Context.Find<T>(Id);
     }
 
-    public IQueryable<T> List()
+    public IList<T> List()
     {
       var task = Task.Run(async () => {
-        return await this.Context.Query<T>().ToListAsync<T>();
+        return await this.Context.Set<T>().ToListAsync<T>();
       });
 
-      return task.Result.AsQueryable<T>();
+      return task.Result;
     }
 
     public void Remove(T entity)
     {
       this.Context.Remove<T>(entity);
+      this.Context.SaveChanges();
     }
 
     public void Remove(int Id)
     {
-      this.Remove(this.Context.Find<T>(Id));
+      this.Remove(this.Get(Id));
     }
 
     public T Update(T entity)
     {
       this.Context.Update<T>(entity);
+      this.Context.SaveChanges();
       return entity;
+    }
+
+    public void Dispose()
+    {
+      this.Context.Dispose();
     }
   }
 }

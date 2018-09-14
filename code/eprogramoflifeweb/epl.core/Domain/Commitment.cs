@@ -5,17 +5,16 @@ using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-  public abstract class Commitment : IEntity
+  public abstract class Commitment : IEntity, IEquatable<Commitment>
   {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string Name { get; private set; }
     public string Description { get; set; }
-    public Frequency Frequency { get; set; }
-    public Level Level { get; set; }
-    protected abstract string KeyFormat { get; }
-
+    public Frequency Frequency { get; protected set; }
     public IDictionary<string, Level> Performed { get; private set; }
 
+    protected abstract string KeyFormat { get; }
+    
     public Commitment(string name)
     {
       this.Name = name;
@@ -30,24 +29,9 @@ namespace epl.core.Domain
     public abstract void Point(DateTime date, Level level);
     public abstract Level GetPoint(DateTime date);
 
-    public override bool Equals(object obj)
+    public bool Equals(Commitment other)
     {
-      return this.Name.Equals(((Commitment)obj).Name);
-    }
-
-    public override int GetHashCode()
-    {
-      return this.Name.GetHashCode() + this.Frequency.GetHashCode();
-    }
-
-    public static bool operator ==(Commitment a, Commitment b)
-    {
-      return a.Name.Equals(b.Name);
-    }
-
-    public static bool operator !=(Commitment a, Commitment b)
-    {
-      return !a.Name.Equals(b.Name);
+      return this.Id == other.Id;
     }
   }
 }

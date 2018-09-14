@@ -7,22 +7,12 @@ export class CommonService {
 
   constructor(private http: HttpClient) { }
 
-  public GetIdentity(): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('https://localhost:6001/api/identity', {
-      observe: 'response'
-    });
-  }
-
-  public GetValues(): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('https://localhost:6001/api/values', {
-      observe: 'response'
-    });
-  }
-
   public GetCommitments(): Observable<HttpResponse<Object>> {
-    return this.http.get<Object>('https://localhost:6001/api/commitments', {
-      observe: 'response'
-    });
+    return this.http.get<Object>('https://localhost:6001/api/commitments', { observe: 'response' });
+  }
+
+  public Point(): Observable<HttpResponse<Object>> {
+    return this.http.post('https://localhost:6001/api/commitments', {}, { observe: 'response' });
   }
 
 }

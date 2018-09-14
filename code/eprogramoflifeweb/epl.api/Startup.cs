@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using epl.infrastructure;
 using Microsoft.EntityFrameworkCore;
+using epl.core.Interfaces;
+using epl.infrastructure.Repositories;
+using epl.core.Domain;
 
 namespace epl.api
 {
@@ -44,7 +47,9 @@ namespace epl.api
                   .AllowCredentials());
       });
 
+      services.AddScoped<DbContext, CommitmentsContext>();
       services.AddDbContext<CommitmentsContext>(options => options.UseInMemoryDatabase("epldatabase"));
+      services.AddTransient<IRepository<Commitment>, ContextRepository<Commitment>>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
