@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 // Services
-import { CommonService } from './services/common.service'
-import { AuthService } from './services/auth.service'
+import { CommonService } from './services/common.service';
+import { AuthService } from './services/auth.service';
 
 // Models
-import { Token } from './models/token.model'
+import { Token } from './models/token.model';
+import { Commitment } from './models/commitment.model';
 
 // Auth
 import { AuthToken } from './auth/auth-token';
@@ -15,24 +17,33 @@ import { AuthToken } from './auth/auth-token';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {  
-  title = 'ClientApp';
+export class AppComponent implements OnInit {
+  public commitments: Array<Commitment>;
+  public rowspan: number;
+  
+  constructor(private common: CommonService,
+    private auth: AuthService,
+    private translate: TranslateService) {
 
-  constructor(private common: CommonService, private auth: AuthService) { }
+    translate.setDefaultLang('en');
+    translate.use('en');
+
+    this.commitments = new Array<Commitment>();
+    this.rowspan = 10;
+
+    this.GetCommitments();
+  }
 
   ngOnInit(): void {
     this.auth.GetToken().subscribe(res => { AuthToken.Set(res.body); })
   }
 
   private GetCommitments() {
-    this.common.GetCommitments().subscribe(x => {
-      alert(x.body);
-    });
-  }
-
-  private UpdateCommitments() {
-    this.common.Point().subscribe(x => {
-      alert(x.body);
+    this.common.GetCommitments().subscribe(res => {
+      res.body.map(c => {
+        this.commitments.push(c);
+      });
+      this.rowspan = this.commitments.length;
     });
   }
 

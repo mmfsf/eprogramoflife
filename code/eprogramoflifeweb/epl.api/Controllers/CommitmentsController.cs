@@ -50,9 +50,9 @@ namespace epl.api.Controllers
     }
 
     [HttpPost]
-    public IActionResult Point()
+    public IActionResult Point(int Id)
     {
-      var item = this.Repository.Get(1);
+      var item = this.Repository.Get(Id);
       item.Point(DateTime.Now, Level.Done);
       this.Repository.Update(item);
       return Json(item);
