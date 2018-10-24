@@ -7,7 +7,7 @@ namespace epl.core.Domain
 {
   public class YearlyCommitment : Commitment
   {
-    protected override string KeyFormat { get => "yyyy"; }
+    protected override string KeyFormat { get => "yyyy"; }    
 
     public YearlyCommitment(string name) : base(name)
     {

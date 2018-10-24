@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
 
 // Services
-import { CommonService } from './services/common.service';
+import { CommonService } from '../../services/common.service';
 
 // Models
 import { Commitment } from '../../models/commitment.model';
@@ -18,13 +18,12 @@ export class CommitmentComponent implements OnInit {
 
   constructor(private common: CommonService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public check(event: MatCheckboxChange) {
-    this.common.Point().subscribe(res => {
-      alert(res.body);
+    var id = parseInt(event.source.value);
+    this.common.Point(id, event.checked).subscribe(r => {
+      console.log(r);
     });
   }
-
 }

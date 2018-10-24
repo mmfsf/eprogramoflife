@@ -2,7 +2,11 @@
 using epl.core.ValuesObjects;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace epl.infrastructure
 {
@@ -22,9 +26,9 @@ namespace epl.infrastructure
         e.HasKey(k => k.Id);
 
         e.Property(p => p.Performed)
-         .HasConversion(
-          d => JsonConvert.SerializeObject(d, Formatting.None),
-          s => JsonConvert.DeserializeObject<Dictionary<string, Level>>(s));
+        .HasConversion(
+          s => JsonConvert.SerializeObject(s, Formatting.None),
+          d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d));
 
         e.ToTable("Commitments");
       });

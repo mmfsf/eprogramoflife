@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.core.test", "epl.core.t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.ui", "epl.ui\epl.ui.csproj", "{8CDA3AF5-DABF-4E8D-A734-4D11F6F5DA25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epl.infrastructure", "epl.infrastructure\epl.infrastructure.csproj", "{4FF0B724-59AD-44B1-A700-67BFB6E5DB77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epl.infrastructure", "epl.infrastructure\epl.infrastructure.csproj", "{4FF0B724-59AD-44B1-A700-67BFB6E5DB77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epl.reactui", "epl.reactui\epl.reactui.csproj", "{F41097DB-0977-44A2-8FF4-080816014EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{4FF0B724-59AD-44B1-A700-67BFB6E5DB77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FF0B724-59AD-44B1-A700-67BFB6E5DB77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FF0B724-59AD-44B1-A700-67BFB6E5DB77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41097DB-0977-44A2-8FF4-080816014EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41097DB-0977-44A2-8FF4-080816014EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41097DB-0977-44A2-8FF4-080816014EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41097DB-0977-44A2-8FF4-080816014EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

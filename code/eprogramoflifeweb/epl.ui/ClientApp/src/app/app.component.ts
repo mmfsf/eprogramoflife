@@ -30,12 +30,13 @@ export class AppComponent implements OnInit {
 
     this.commitments = new Array<Commitment>();
     this.rowspan = 10;
-
-    this.GetCommitments();
   }
 
   ngOnInit(): void {
-    this.auth.GetToken().subscribe(res => { AuthToken.Set(res.body); })
+    this.auth.GetToken().subscribe(res => {
+      AuthToken.Set(res.body);
+      this.GetCommitments();
+    })
   }
 
   private GetCommitments() {

@@ -31,11 +31,7 @@ namespace epl.infrastructure.Repositories
 
     public IList<T> List()
     {
-      var task = Task.Run(async () => {
-        return await this.Context.Set<T>().ToListAsync<T>();
-      });
-
-      return task.Result;
+      return this.Context.Set<T>().ToList<T>();
     }
 
     public void Remove(T entity)

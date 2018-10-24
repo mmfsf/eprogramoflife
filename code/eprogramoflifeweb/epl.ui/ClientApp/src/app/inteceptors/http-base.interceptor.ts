@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpInterceptor,
   HttpHandler,
@@ -6,19 +6,20 @@ import {
   HttpEvent,
   HttpErrorResponse,
   HttpEventType
-} from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { tap } from "rxjs/operators";
+} from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 // Auth
-import { AuthToken } from "../auth/auth-token";
+import { AuthToken } from '../auth/auth-token';
 
 @Injectable()
 export class HttpBaseInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({
       setHeaders: {
-        Authorization: AuthToken.GetTokenType() + " " + AuthToken.GetAccessToken()
+        Authorization: AuthToken.GetTokenType() + ' ' + AuthToken.GetAccessToken(),
+        'Content-Type': 'application/json'
       }
     });
 

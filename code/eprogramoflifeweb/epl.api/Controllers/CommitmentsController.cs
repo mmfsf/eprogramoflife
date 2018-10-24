@@ -19,41 +19,22 @@ namespace epl.api.Controllers
     public CommitmentsController(IRepository<Commitment> repository)
     {
       this.Repository = repository;
-      this.FakeDataInit();
-    }
-
-    private void FakeDataInit()
-    {
-      var commitments = new List<Commitment>
-      {
-        new DailyCommitment("mornigoffering"),
-        new DailyCommitment("nightprayers"),
-        new DailyCommitment("dailymeditation"),
-        new DailyCommitment("rosary"),
-        new DailyCommitment("visityeucharist"),
-        new DailyCommitment("angelus"),
-        new WeeklyCommitment("eucharistichour"),
-        new MonthlyCommitment("reconciliation"),
-        new MonthlyCommitment("reflection"),
-        new YearlyCommitment("triduum")
-      };
-
-      foreach (var item in commitments)
-      {
-        this.Repository.Add(item);
-      }
     }
 
     public IActionResult Index()
     {
-      return Json(this.Repository.List());
+      var list = this.Repository.List();
+      return Json(list);
     }
 
     [HttpPost]
-    public IActionResult Point(int Id)
+    public IActionResult Point([FromBody] dynamic point)
     {
-      var item = this.Repository.Get(Id);
-      item.Point(DateTime.Now, Level.Done);
+      int id = point.id;
+      bool done = point.done;
+
+      var item = this.Repository.Get(id);
+      item.Point(DateTime.Now, done ? Level.Done : Level.NotDone);
       this.Repository.Update(item);
       return Json(item);
     }

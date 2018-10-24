@@ -33,7 +33,7 @@ namespace epl.api
           .AddAuthentication("Bearer")
           .AddIdentityServerAuthentication(options =>
           {
-            options.Authority = "https://localhost:5001";
+            options.Authority = Configuration.GetSection("URLs").GetValue<string>("IdentityServer");
             options.RequireHttpsMetadata = false;
             options.ApiName = "epl.api";
           });
@@ -48,8 +48,12 @@ namespace epl.api
       });
 
       services.AddScoped<DbContext, CommitmentsContext>();
-      services.AddDbContext<CommitmentsContext>(options => options.UseInMemoryDatabase("epldatabase"));
-      services.AddTransient<IRepository<Commitment>, ContextRepository<Commitment>>();
+      services.AddEntityFrameworkSqlServer()
+        .AddDbContext<CommitmentsContext>(options => {
+          options.UseSqlServer(Configuration.GetSection("ConnectionString").Value);
+        },
+        ServiceLifetime.Scoped);
+      services.AddScoped<IRepository<Commitment>, ContextRepository<Commitment>>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
