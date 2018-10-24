@@ -1,12 +1,12 @@
 ﻿using epl.core.Domain;
 using epl.core.ValuesObjects;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 
 namespace epl.infrastructure
 {
@@ -36,4 +36,14 @@ namespace epl.infrastructure
       base.OnModelCreating(builder);
     }
   }
+}
+
+public class PerformedConverter : ValueConverter<string, Dictionary<string, Level>>
+{
+  public PerformedConverter(ConverterMappingHints mappingHints = default) : base(EncryptExpr, DecryptExpr, mappingHints)
+  {
+  }
+
+  static Expression<Func<Dictionary<string, Level>, string>> DecryptExpr = s => JsonConvert.SerializeObject(s, Formatting.None);
+  static Expression<Func<string, Dictionary<string, Level>>> EncryptExpr = d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d));
 }
