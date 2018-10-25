@@ -28,7 +28,8 @@ namespace epl.infrastructure
         e.Property(p => p.Performed)
         .HasConversion(
           s => JsonConvert.SerializeObject(s, Formatting.None),
-          d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d));
+          d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d)
+        );
 
         e.ToTable("Commitments");
       });
@@ -36,14 +37,4 @@ namespace epl.infrastructure
       base.OnModelCreating(builder);
     }
   }
-}
-
-public class PerformedConverter : ValueConverter<string, Dictionary<string, Level>>
-{
-  public PerformedConverter(ConverterMappingHints mappingHints = default) : base(EncryptExpr, DecryptExpr, mappingHints)
-  {
-  }
-
-  static Expression<Func<Dictionary<string, Level>, string>> DecryptExpr = s => JsonConvert.SerializeObject(s, Formatting.None);
-  static Expression<Func<string, Dictionary<string, Level>>> EncryptExpr = d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d));
 }

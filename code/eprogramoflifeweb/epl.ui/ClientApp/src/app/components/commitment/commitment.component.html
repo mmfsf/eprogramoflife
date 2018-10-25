@@ -1,1 +1,1 @@
-<mat-checkbox class="item-commitment" [labelPosition]="after" [value]="commitment.id" (change)="check($event)">{{commitment.name}}</mat-checkbox>
+<mat-checkbox class="item-commitment" [labelPosition]="after" [value]="commitment.id" [checked]="commitment.pointed" (change)="check($event)">{{commitment.description}}</mat-checkbox>

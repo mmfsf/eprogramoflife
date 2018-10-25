@@ -22,7 +22,7 @@ namespace epl.core.Domain
     public override Level GetPoint(DateTime date)
     {
       var key = date.Date.ToString(this.KeyFormat);
-      return this.Performed.ContainsKey(key) ? this.Performed[key] :Level.NotDone;
+      return this.Performed.ContainsKey(key) ? this.Performed[key] : Level.NotDone;
     }
 
     public override void Point(DateTime date, Level level)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using epl.api.Models;
 using epl.core.Domain;
 using epl.core.Interfaces;
 using epl.core.ValuesObjects;
@@ -23,8 +24,21 @@ namespace epl.api.Controllers
 
     public IActionResult Index()
     {
+      var result = new List<CommitmentModel>();
       var list = this.Repository.List();
-      return Json(list);
+
+      foreach (var item in list)
+      {
+        result.Add(new CommitmentModel() {
+          Id = item.Id,
+          Name = item.Name,
+          Description = item.Description,
+          Frequency = item.Frequency,
+          Pointed = item.GetPoint(DateTime.Now) == Level.Done ? true : false
+        });
+      }
+
+      return Json(result);
     }
 
     [HttpPost]

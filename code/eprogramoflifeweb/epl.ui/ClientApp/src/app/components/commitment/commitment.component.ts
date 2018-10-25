@@ -18,7 +18,9 @@ export class CommitmentComponent implements OnInit {
 
   constructor(private common: CommonService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   public check(event: MatCheckboxChange) {
     var id = parseInt(event.source.value);

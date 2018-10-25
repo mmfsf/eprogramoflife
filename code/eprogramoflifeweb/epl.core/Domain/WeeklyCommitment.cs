@@ -16,7 +16,7 @@ namespace epl.core.Domain
 
     public WeeklyCommitment(string name, string description) : base(name, description)
     {
-      this.Frequency = Frequency.Daily;
+      this.Frequency = Frequency.Weekly;
     }
 
     public override Level GetPoint(DateTime date)
