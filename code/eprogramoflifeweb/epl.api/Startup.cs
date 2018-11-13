@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using epl.core.Interfaces;
 using epl.infrastructure.Repositories;
 using epl.core.Domain;
+using epl.api.Filters;
 
 namespace epl.api
 {
@@ -24,7 +25,7 @@ namespace epl.api
     public void ConfigureServices(IServiceCollection services)
     {
       services
-          .AddMvcCore()
+          .AddMvcCore(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
           .AddAuthorization()
           .AddJsonFormatters()
           .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
