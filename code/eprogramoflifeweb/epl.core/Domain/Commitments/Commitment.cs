@@ -7,7 +7,7 @@ namespace epl.core.Domain
 {
   public abstract class Commitment : IEntity, IEquatable<Commitment>
   {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Name { get; private set; }
     public string Description { get; set; }
     public Frequency Frequency { get; protected set; }
@@ -31,7 +31,7 @@ namespace epl.core.Domain
 
     public bool Equals(Commitment other)
     {
-      return this.Id == other.Id;
+      return this.ID == other.ID;
     }
   }
 }
