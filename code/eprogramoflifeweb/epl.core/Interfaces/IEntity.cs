@@ -4,8 +4,8 @@ using System.Text;
 
 namespace epl.core.Interfaces
 {
-  public interface IEntity
-  {
-    int ID { get; }
-  }
+    public interface IEntity
+    {
+        int ID { get; }
+    }
 }

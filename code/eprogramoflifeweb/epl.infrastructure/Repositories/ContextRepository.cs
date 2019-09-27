@@ -8,53 +8,53 @@ using System.Threading.Tasks;
 
 namespace epl.infrastructure.Repositories
 {
-  public class ContextRepository<T> : IRepository<T> where T : class, IEntity
-  {
-    private DbContext Context { get; set; }
-
-    public ContextRepository(DbContext context)
+    public class ContextRepository<T> : IRepository<T> where T : class, IEntity
     {
-      this.Context = context;
-    }
+        private DbContext Context { get; set; }
 
-    public T Add(T entity)
-    {
-      this.Context.Add<T>(entity);
-      this.Context.SaveChanges();
-      return entity;
-    }
+        public ContextRepository(DbContext context)
+        {
+            this.Context = context;
+        }
 
-    public T Get(int Id)
-    {
-      return this.Context.Find<T>(Id);
-    }
+        public T Add(T entity)
+        {
+            this.Context.Add<T>(entity);
+            this.Context.SaveChanges();
+            return entity;
+        }
 
-    public IList<T> List()
-    {
-      return this.Context.Set<T>().ToList<T>();
-    }
+        public T Get(int Id)
+        {
+            return this.Context.Find<T>(Id);
+        }
 
-    public void Remove(T entity)
-    {
-      this.Context.Remove<T>(entity);
-      this.Context.SaveChanges();
-    }
+        public IList<T> List()
+        {
+            return this.Context.Set<T>().ToList<T>();
+        }
 
-    public void Remove(int Id)
-    {
-      this.Remove(this.Get(Id));
-    }
+        public void Remove(T entity)
+        {
+            this.Context.Remove<T>(entity);
+            this.Context.SaveChanges();
+        }
 
-    public T Update(T entity)
-    {
-      this.Context.Update<T>(entity);
-      this.Context.SaveChanges();
-      return entity;
-    }
+        public void Remove(int Id)
+        {
+            this.Remove(this.Get(Id));
+        }
 
-    public void Dispose()
-    {
-      this.Context.Dispose();
+        public T Update(T entity)
+        {
+            this.Context.Update<T>(entity);
+            this.Context.SaveChanges();
+            return entity;
+        }
+
+        public void Dispose()
+        {
+            this.Context.Dispose();
+        }
     }
-  }
 }

@@ -23,7 +23,7 @@ namespace epl.infrastructure
     {
       builder.Entity<Commitment>(e =>
       {
-        e.HasKey(k => k.Id);
+        e.HasKey(k => k.ID);
 
         e.Property(p => p.Performed)
         .HasConversion(
