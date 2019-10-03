@@ -25,7 +25,7 @@ namespace epl.IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("epl.api", "My API")
+                new ApiResource("epl.api", "Program of Life API")
             };
         }
 
@@ -37,7 +37,7 @@ namespace epl.IdentityServer
             {
                 new Client
                 {
-                    ClientId = "client",
+                    ClientId = "epl.reactui",
                     AllowedGrantTypes = { GrantType.Implicit, GrantType.ClientCredentials },
                     AllowAccessTokensViaBrowser = true,
                     ClientSecrets =
