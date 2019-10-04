@@ -8,7 +8,7 @@ namespace epl.infrastructure
         public CommitmentsContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CommitmentsContext>();
-            optionsBuilder.UseSqlServer("Server=LOCALHOST\\SQLEXPRESS;Database=eprogramoflife;User Id=sa;Password=123456;");
+            optionsBuilder.UseSqlServer("Server=LOCALHOST:1433;Database=eprogramoflife;User Id=sa;Password=159753!@;");
 
             return new CommitmentsContext(optionsBuilder.Options);
         }

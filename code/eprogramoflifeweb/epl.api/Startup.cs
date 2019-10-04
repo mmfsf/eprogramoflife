@@ -47,7 +47,7 @@ namespace epl.api
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost.com:3000")
+                    builder.WithOrigins(Configuration.GetSection("URLs").GetValue<string>("UI"))
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowAnyOrigin();

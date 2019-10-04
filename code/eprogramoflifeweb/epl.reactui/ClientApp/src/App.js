@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+
 import './App.css';
 
 
@@ -14,7 +16,7 @@ class MyComponent extends React.Component {
     handleLogin(e) {
         e.preventDefault();
         const request = require('request');
-        request('http://localhost:3000/authentication', function (error, response, body) {
+        request('https://localhost:3001/authentication', function (error, response, body) {
             if (error) {
                 console.log(error);
             }
@@ -46,8 +48,8 @@ class MyComponent extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleLogin}>Login</button>
-                <button onClick={this.handleApiCall}>Call API</button>
+                <Button variant="contained" color="primary" onClick={this.handleLogin}>Login</Button>
+                <Button variant="contained" color="primary" onClick={this.handleApiCall}>Call API</Button>
             </div>
         );
     }
