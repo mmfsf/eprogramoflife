@@ -1,20 +1,22 @@
 ﻿using epl.api.Filters;
-using epl.infrastructure;
-using epl.core.Interfaces;
 using epl.core.Domain;
+using epl.core.Interfaces;
+using epl.infrastructure;
 using epl.infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 
 namespace epl.api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,24 +30,28 @@ namespace epl.api
             services
                 .AddMvcCore(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
                 .AddAuthorization()
+                .AddNewtonsoftJson()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            services
-                .AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = Configuration.GetSection("URLs").GetValue<string>("IdentityServer");
-                    options.RequireHttpsMetadata = false;
-                    options.ApiName = "epl.api";
-                });
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = Configuration.GetSection("URLs").GetValue<string>("IdentityServer");
+                options.RequireHttpsMetadata = false;
+
+                options.Audience = "epl.api";
+            });
 
             services.AddCors(options =>
             {
-                options.AddPolicy("Devlopment",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost.com:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
             });
 
             services.AddScoped<DbContext, CommitmentsContext>();
@@ -70,7 +76,9 @@ namespace epl.api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

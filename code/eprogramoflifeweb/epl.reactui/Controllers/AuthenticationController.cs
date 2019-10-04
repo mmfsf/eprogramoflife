@@ -1,12 +1,12 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using IdentityModel;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
 
 namespace epl.reactui.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("authentication")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -14,7 +14,7 @@ namespace epl.reactui.Controllers
         public async Task<ActionResult> Authorize()
         {
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
+            var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
             if (disco.IsError)
             {
                 return Ok(disco.Error);
@@ -34,7 +34,7 @@ namespace epl.reactui.Controllers
                 return Ok(tokenResponse.Error);
             }
 
-            return Ok(tokenResponse);
+            return Ok(tokenResponse.AccessToken);
         }
     }
 }
