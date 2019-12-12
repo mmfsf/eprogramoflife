@@ -8,6 +8,7 @@ namespace epl.core.Domain
         public int ID { get; }
         public string Email { get; }
         public string Password { get; set; }
+        public bool Enabled { get; set; }
 
         public Account(int ID, string email, string password)
         {

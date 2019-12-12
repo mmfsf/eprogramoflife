@@ -15,12 +15,14 @@ namespace epl.core.Domain
         public string Virtue { get; set; }
         public IList<string> Path { get; set; }
         public DateTime CreatedDate { get; }
+        public Deffects Deffects { get; set; }
 
-        public Program(Person person)
+        protected internal Program(Person person)
         {
             Person = person;
             Path = new List<string>();
             CreatedDate = DateTime.Now;
+            Deffects = new Deffects();
         }
     }
 }
