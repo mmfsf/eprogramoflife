@@ -39,8 +39,12 @@ services:
     build:
       context: .
       dockerfile: epl.infrastructure/database-dockerfile
-    network:
+    networks:
       - epl-network
 
 networks:
   epl-network:
+
+networks:
+  epl-network:
+    driver: bridge

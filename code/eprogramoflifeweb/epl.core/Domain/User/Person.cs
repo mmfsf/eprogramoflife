@@ -5,7 +5,7 @@ using System.Text;
 
 namespace epl.core.Domain
 {
-    public class Person : IEntity
+    public class Person
     {
         public int ID { get; set; }
         public Account Account { get; set; }

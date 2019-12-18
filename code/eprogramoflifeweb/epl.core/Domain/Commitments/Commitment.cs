@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-  public abstract class Commitment : IEntity, IEquatable<Commitment>
+  public abstract class Commitment : IEquatable<Commitment>
   {
     public int ID { get; set; }
     public string Name { get; private set; }

@@ -3,7 +3,7 @@ using System;
 
 namespace epl.core.Domain
 {
-    public class Account : IEntity
+    public class Account
     {
         public int ID { get; }
         public string Email { get; }

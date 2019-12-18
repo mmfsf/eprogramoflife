@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace epl.infrastructure.Repositories
 {
-    public class ContextRepository<T> : IRepository<T> where T : class, IEntity
+    public class ContextRepository<T> : IRepository<T> where T : class
     {
         private DbContext Context { get; set; }
 
