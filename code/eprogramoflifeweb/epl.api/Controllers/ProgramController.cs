@@ -15,5 +15,11 @@ namespace epl.api.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Post()
+        {
+            return View();
+        }
     }
 }
