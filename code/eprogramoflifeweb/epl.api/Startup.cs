@@ -3,6 +3,7 @@ using epl.core.Domain;
 using epl.core.Interfaces;
 using epl.infrastructure;
 using epl.infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
 
 namespace epl.api
 {
@@ -27,14 +31,17 @@ namespace epl.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddMvcCore(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddMvcCore(_ => {
+                    _.EnableEndpointRouting = false;
+                    _.Filters.Add(typeof(CustomExceptionFilterAttribute));
+                })
                 .AddAuthorization()
                 .AddNewtonsoftJson()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+                .AddApiExplorer();
 
-            services.AddAuthentication("Bearer")
-            .AddJwtBearer("Bearer", options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
                 options.Authority = Configuration.GetSection("URLs").GetValue<string>("IdentityServer");
                 options.RequireHttpsMetadata = false;
@@ -54,15 +61,19 @@ namespace epl.api
                 });
             });
 
-            services.AddScoped<DbContext, CommitmentsContext>();
-            services.AddEntityFrameworkSqlServer()
-              .AddDbContext<CommitmentsContext>(options =>
-              {
-                  options.UseSqlServer(Configuration.GetSection("ConnectionString").Value);
-              },
-              ServiceLifetime.Scoped);
+            IoC(services);
+            ConfigureSwagger(services);
 
-            services.AddScoped<IRepository<Commitment>, ContextRepository<Commitment>>();
+
+            //services.AddScoped<DbContext, CommitmentsContext>();
+            //services.AddEntityFrameworkSqlServer()
+            //  .AddDbContext<CommitmentsContext>(options =>
+            //  {
+            //      options.UseSqlServer(Configuration.GetSection("ConnectionString").Value);
+            //  },
+            //  ServiceLifetime.Scoped);
+
+            //services.AddScoped<IRepository<Commitment>, ContextRepository<Commitment>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,16 +85,47 @@ namespace epl.api
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(_ =>
+            {
+                _.SwaggerEndpoint("/swagger/v1/swagger.json", "MassTime API V1");
+            });
 
-            app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvcWithDefaultRoute();
+        }
+
+        private void IoC(IServiceCollection services)
+        {
+            services.AddSingleton<IRepository<ProgramOfLife>, MemoryRepository<ProgramOfLife>>();
+        }
+
+        private void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(_ =>
             {
-                endpoints.MapControllers();
+                _.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Program of Life API",
+                    Version = "v1",
+                    Description = string.Empty,
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Marcos Farias",
+                        Email = string.Empty,
+                        Url = new Uri("http://github.com/mmfsf/"),
+                    }
+                });
+
+                _.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.ApiKey
+                });
             });
         }
     }

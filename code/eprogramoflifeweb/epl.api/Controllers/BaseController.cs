@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace epl.api.Controllers
 {
-    public class BaseController : Controller
+    [ApiController]
+    [Produces("application/json")]
+    public class BaseController : ControllerBase
     {
 
     }

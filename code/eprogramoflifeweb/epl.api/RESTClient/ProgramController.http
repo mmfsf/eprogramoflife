@@ -1,0 +1,28 @@
+﻿@hostname = localhost
+@port = 6001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6IjNhNTExNDUxZGU3MjhhMmRmOWUzZmU4ZWM3ZWIwNWVlIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE1Nzg5MTMwNjksImV4cCI6MTU3ODkxNjY2OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6ImVwbC5hcGkiLCJjbGllbnRfaWQiOiJlcGwudWkiLCJzY29wZSI6WyJlcGwuYXBpIl19.IZLy3X3MKpS8UMvCtN1Q0_Q9JrUxyYGIqw4lKi6ensKcpfiIcVk7a4JiJuL9AQ3vb8Xs8UG4-25ky_sMK0TmNkTpyM0R2LhL9uq5GOIATsvCsv2iTm5drpDx76a-1zihAB2rR9T2bSAEaLMwGatEyJS91sDoYVNz7zV7LqXJZzUWz9-K2Uf_sKhbcXqqGlsEwG6V6fGjd6BlvYeFbimmQ57_YG4xim5pdhG0lSPZXYVKJqNkDulxqEbU3eFUBde9Z_EEP_c_iQgVt0k3sgAh8SjlKwcHj4nwHYck8lA8MF36TjouP05ZS25zUYwvFqXNp8GOj-wYfLd4IWj6gQRtjg
+
+###
+GET https://{{host}}/api/program/all
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+###
+GET https://{{host}}/api/program/1
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+###
+POST https://{{host}}/api/program
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "name": "Program",
+  "motto": "bla bla bla",
+  "ideal": "ble ble ble",
+  "virtue": "asdfg",
+  "path": ["a", "b", "c"]
+}

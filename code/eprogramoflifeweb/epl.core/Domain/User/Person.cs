@@ -9,7 +9,7 @@ namespace epl.core.Domain
     {
         public int ID { get; set; }
         public Account Account { get; set; }
-        public Program Program { get; set; }
+        public ProgramOfLife Program { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -28,17 +28,6 @@ namespace epl.core.Domain
         {
             Account = account;
             DateOfBirth = DateTime.MinValue;
-        }
-
-        public Program CreateProgram()
-        {
-            if(Program != null)
-            {
-                return Program;
-            }
-
-            Program = new Program(this);
-            return Program;
         }
     }
 }

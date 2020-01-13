@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace epl.core.Interfaces
 {
-    public interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T> : IDisposable where T : class, IEntity
     {
-        T Get(int Id);
+        T Get(int ID);
         IList<T> List();
         T Add(T entity);
         T Update(T entity);
         void Remove(T entity);
-        void Remove(int Id);
+        void Remove(int ID);
     }
 }

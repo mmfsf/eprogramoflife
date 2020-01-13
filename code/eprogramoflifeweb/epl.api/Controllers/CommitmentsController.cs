@@ -22,7 +22,8 @@ namespace epl.api.Controllers
             this.Repository = repository;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Get()
         {
             var result = new List<CommitmentModel>();
             var list = this.Repository.List();
@@ -39,7 +40,7 @@ namespace epl.api.Controllers
                 });
             }
 
-            return Json(result);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -51,7 +52,7 @@ namespace epl.api.Controllers
             var item = this.Repository.Get(id);
             item.Point(DateTime.Now, done ? Level.Done : Level.NotDone);
             this.Repository.Update(item);
-            return Json(item);
+            return Ok(item);
         }
     }
 }

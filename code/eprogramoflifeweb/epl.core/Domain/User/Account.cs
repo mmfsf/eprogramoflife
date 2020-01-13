@@ -3,9 +3,9 @@ using System;
 
 namespace epl.core.Domain
 {
-    public class Account
+    public class Account :  IEntity
     {
-        public int ID { get; }
+        public int ID { get; set; }
         public string Email { get; }
         public string Password { get; set; }
         public bool Enabled { get; set; }

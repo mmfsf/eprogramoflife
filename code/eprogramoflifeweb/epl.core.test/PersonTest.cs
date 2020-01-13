@@ -7,34 +7,19 @@ namespace epl.core.test
     public class PersonTest
     {
         private Account account;
-        private Person person;
 
         [TestInitialize]
         public void Setup()
         {
             account = new Account(1, "a@b.c", "159753");
-            person = new Person(account);
         }
 
         [TestMethod]
-        public void Program_Create()
+        public void New_Person_Have_Age()
         {
-            var program = person.CreateProgram();
+            var person = new Person(account);
 
-            Assert.IsNotNull(program);
-            Assert.IsNotNull(program.Person);
-            Assert.IsTrue(program.Person.ID == person.ID);
-        }
-
-        [TestMethod]
-        public void Program_Call_Create_Multiple_Times_Return_Same_Reference()
-        {
-            var program_1 = person.CreateProgram();
-            program_1.ID = 1;
-            var program_2 = person.CreateProgram();
-
-            
-            Assert.IsTrue(program_1.ID == program_2.ID);
+            Assert.IsNotNull(person.Age);
         }
     }
 }

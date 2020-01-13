@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.7.2",
+    "@material-ui/core": "^4.8.2",
     "@types/history": "4.7.2",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.11",
@@ -16,7 +16,7 @@
     "bootstrap": "^4.4.1",
     "connected-react-router": "6.2.1",
     "cross-env": "5.2.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-flowtype": "2.50.3",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",

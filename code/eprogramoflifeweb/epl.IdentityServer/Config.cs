@@ -34,7 +34,7 @@ namespace epl.IdentityServer
             {
                 new Client
                 {
-                    ClientId = "epl.reactui",
+                    ClientId = "epl.ui",
                     AllowedGrantTypes = { GrantType.Implicit, GrantType.ClientCredentials },
                     AllowAccessTokensViaBrowser = true,
                     ClientSecrets =
