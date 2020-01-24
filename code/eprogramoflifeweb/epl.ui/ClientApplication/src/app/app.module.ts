@@ -10,11 +10,14 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatToolbarModule,
-  MatSidenavModule,
   MatListModule,
   MatIconModule,
   MatGridListModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatInputModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -29,6 +32,8 @@ import { AuthService } from './services/auth.service';
 
 // Components
 import { CommitmentComponent } from './components/commitment/commitment.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProgramOfLifeComponent } from './components/programoflife/programoflife.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,7 +43,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    CommitmentComponent
+    LoginComponent,
+    CommitmentComponent,
+    ProgramOfLifeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +56,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
-    MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatGridListModule,
     MatFormFieldModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatMenuModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

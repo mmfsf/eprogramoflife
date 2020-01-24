@@ -5,14 +5,14 @@ using System.Text;
 
 namespace epl.core.Domain
 {
-    public class Person
+    public class Person : IEntity
     {
         public int ID { get; set; }
-        public Account Account { get; set; }
-        public ProgramOfLife Program { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public Account Account { get; set; }
+        public ProgramOfLife ProgramOfLife { get; set; }
 
         public int Age
         {

@@ -21,7 +21,7 @@ namespace epl.core.test
         {
             var program = new ProgramOfLife(person);
 
-            Assert.IsNotNull(program.Path);
+            Assert.IsNotNull(program.Means);
             Assert.IsNotNull(program.CreatedDate);
             Assert.IsNotNull(program.Deffects);
         }

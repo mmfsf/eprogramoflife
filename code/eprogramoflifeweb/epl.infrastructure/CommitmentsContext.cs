@@ -22,10 +22,10 @@ namespace epl.infrastructure
                 e.HasKey(k => k.ID);
 
                 e.Property(p => p.Performed)
-          .HasConversion(
-            s => JsonConvert.SerializeObject(s, Formatting.None),
-            d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d)
-          );
+                .HasConversion(
+                s => JsonConvert.SerializeObject(s, Formatting.None),
+                d => JsonConvert.DeserializeObject<Dictionary<string, Level>>(d)
+                );
 
                 e.ToTable("Commitments");
             });

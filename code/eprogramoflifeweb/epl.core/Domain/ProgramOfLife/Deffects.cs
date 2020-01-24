@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-    public class Deffects
+    public class Deffects : IEntity
     {
         public int ID { get; set; }
+        public string DominantDefect { get; set; }
         public IList<string> WithGood { get; set; }
         public IList<string> WithMe { get; set; }
         public IList<string> WithOthers { get; set; }

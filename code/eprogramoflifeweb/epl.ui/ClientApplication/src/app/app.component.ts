@@ -1,30 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { AuthToken } from './auth/auth-token';
-import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  token: string;
+export class AppComponent implements OnInit {
 
-  constructor(private auth: AuthService, private common: CommonService) {
-    this.token = 'No token';
+  constructor(private auth: AuthService) { }
+
+  ngOnInit(): void {
+    this.GetToken();
   }
 
   public GetToken(): void {
     this.auth.GetToken().subscribe(res => {
+      console.log(res.body.access_token);
       AuthToken.Set(res.body);
-      this.token = res.body.access_token;
-    });
-  }
-
-  public Test(): void {
-    this.common.ProgramAll().subscribe(res => {
-      console.log(res);
     });
   }
 }

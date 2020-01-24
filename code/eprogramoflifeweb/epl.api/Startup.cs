@@ -36,6 +36,7 @@ namespace epl.api
                     _.EnableEndpointRouting = false;
                     _.Filters.Add(typeof(CustomExceptionFilterAttribute));
                 })
+                .AddDataAnnotations()
                 .AddAuthorization()
                 .AddNewtonsoftJson()
                 .AddApiExplorer();
@@ -102,7 +103,7 @@ namespace epl.api
 
         private void IoC(IServiceCollection services)
         {
-            services.AddSingleton<IRepository<ProgramOfLife>, MemoryRepository<ProgramOfLife>>();
+            services.AddSingleton<IRepository<Account>, MemoryRepository<Account>>();
         }
 
         private void ConfigureSwagger(IServiceCollection services)

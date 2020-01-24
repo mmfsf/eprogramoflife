@@ -10,11 +10,15 @@ namespace epl.core.Domain
         public string Password { get; set; }
         public bool Enabled { get; set; }
 
-        public Account(int ID, string email, string password)
+        public Account(string email, string password)
         {
-            this.ID = ID;
             Email = email;
             Password = password;
+        }
+
+        public Account(int ID, string email, string password) : this(email, password)
+        {
+            this.ID = ID;
         }
     }
 }

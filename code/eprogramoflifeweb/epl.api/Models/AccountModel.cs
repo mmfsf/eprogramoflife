@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace epl.api.Models
 {
@@ -12,6 +8,7 @@ namespace epl.api.Models
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [StringLength(12, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
         public string Password { get; set; }
     }
 }

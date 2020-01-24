@@ -12,14 +12,14 @@ namespace epl.core.Domain
         public string Motto { get; set; }
         public string Ideal { get; set; }
         public string Virtue { get; set; }
-        public IList<string> Path { get; set; }
+        public IList<string> Means { get; set; }
         public DateTime CreatedDate { get; }
         public Deffects Deffects { get; set; }
 
         public ProgramOfLife(Person person)
         {
             Person = person;
-            Path = new List<string>();
+            Means = new List<string>();
             CreatedDate = DateTime.Now;
             Deffects = new Deffects();
         }

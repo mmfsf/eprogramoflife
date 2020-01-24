@@ -1,0 +1,21 @@
+﻿@hostname = localhost
+@port = 6001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6IjNhNTExNDUxZGU3MjhhMmRmOWUzZmU4ZWM3ZWIwNWVlIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE1NzkyNzUxODAsImV4cCI6MTU3OTI3ODc4MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6ImVwbC5hcGkiLCJjbGllbnRfaWQiOiJlcGwudWkiLCJzY29wZSI6WyJlcGwuYXBpIl19.uzK3LrZmPoSV3NqXhjPfODBZEmicSEOs-qBmx3w9twKYxp2wKVsfLJ0QaTVUOhv66pAFl03hnXNe4OLMx6YNM2thUWr-YhPMFZPxuomCmV69sN2byW5RfdW5S8w29vQNC3GlJ5XRsUdOB4Q1ZREGio4Ga8hSmXF9Gqo0vaUXJINhsBYWfCH_XcjWKBxcDywmAP3tBPRQsV5UgIwIvfpwwWjDTSXvSZNzcOA1J6nfFstUbnG3QP121iGqkR1Z7sqZb0h7A45t6yfVpUeeEL450eiaR9Sv2qwwDZnFuNwo6q4fzvmnuKPNnQF9GgUr0JRVukn2oAj1Y-upTlngDmmVQw
+
+
+###
+POST https://{{host}}/api/account
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "email": "a@b.c",
+  "password": "12345678"
+}
+
+###
+@id = 0
+DELETE https://{{host}}/api/account/{{id}}
+Authorization: Bearer {{token}}

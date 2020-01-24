@@ -8,7 +8,6 @@ namespace epl.IdentityServer
 {
     public class Config
     {
-        // scopes define the resources in your system
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
@@ -26,7 +25,6 @@ namespace epl.IdentityServer
             };
         }
 
-        // clients want to access resources (aka scopes)
         public static IEnumerable<Client> GetClients()
         {
             // client credentials client
@@ -83,5 +81,6 @@ namespace epl.IdentityServer
                 }
             };
         }
+
     }
 }

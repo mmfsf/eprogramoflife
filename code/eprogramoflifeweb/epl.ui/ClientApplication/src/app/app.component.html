@@ -1,10 +1,6 @@
-<mat-sidenav-container>
-  <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
-  <mat-sidenav-content>
-    <button mat-raised-button (click)="GetToken()">Basic</button>
-    <div>{{token}}</div>
-    <p>
-      <button mat-raised-button (click)="Test()">Test</button>
-    </p>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button (click)="GetToken()">Token</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
