@@ -1,0 +1,39 @@
+<mat-grid-list cols="4" rowHeight="1.5em">
+  <mat-grid-tile rowspan="{{rowspan}}">
+    <mat-grid-tile-header>
+      <p>{{ 'COMMITMENTS.DAILY' | translate }}</p>
+    </mat-grid-tile-header>
+    <div>
+      <app-commitment *ngFor="let commitment of dailyCommitment" [commitment]="commitment"></app-commitment>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="{{rowspan}}">
+    <mat-grid-tile-header>
+      <p>{{ 'COMMITMENTS.WEEKLY' | translate }}</p>
+    </mat-grid-tile-header>
+    <div>
+      <app-commitment *ngFor="let commitment of weeklyCommitment" [commitment]="commitment"></app-commitment>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="{{rowspan}}">
+    <mat-grid-tile-header>
+      <p>{{ 'COMMITMENTS.MONTHLY' | translate }}</p>
+    </mat-grid-tile-header>
+    <div>
+      <app-commitment *ngFor="let commitment of monthlyCommitment" [commitment]="commitment"></app-commitment>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="{{rowspan}}">
+    <mat-grid-tile-header>
+      <p>{{ 'COMMITMENTS.YEARLY' | translate }}</p>
+    </mat-grid-tile-header>
+    <div>
+      <app-commitment *ngFor="let commitment of yearlyCommitment" [commitment]="commitment"></app-commitment>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="2">
+    <mat-grid-tile-footer class="footer">
+      <p>Adveniat Regnum Tuum!</p>
+    </mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -20,11 +20,5 @@ export class LoginComponent {
     this.auth.Login(new Account(0, username, password)).subscribe(res => {
       console.log(res.body);
     });
-
-    if (username == 'admin' && password == 'admin') {
-      alert(`${username} ${password}`)
-    } else {
-      this.error = "Invalid credentials";
-    }
   }
 }

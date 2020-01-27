@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProgramOfLifeComponent } from './components/programoflife/programoflife.component';
 import { LoginComponent } from './components/login/login.component';
-import { CommitmentComponent } from './components/commitment/commitment.component';
+import { CommitmentsComponent } from './components/commitments/commitments.component';
 
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
   },  
   {
     path: 'commitments',
-    component: CommitmentComponent
+    component: CommitmentsComponent
   },
   {
     path: 'login',

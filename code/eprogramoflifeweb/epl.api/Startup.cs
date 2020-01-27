@@ -12,43 +12,37 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Session;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace epl.api
 {
     public class Startup
     {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddMvcCore(_ => {
-                    _.EnableEndpointRouting = false;
-                    _.Filters.Add(typeof(CustomExceptionFilterAttribute));
-                })
-                .AddDataAnnotations()
-                .AddAuthorization()
-                .AddNewtonsoftJson()
-                .AddApiExplorer();
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
+            services.AddMvcCore(_ =>
             {
-                options.Authority = Configuration.GetSection("URLs").GetValue<string>("IdentityServer");
-                options.RequireHttpsMetadata = false;
-
-                options.Audience = "epl.api";
-            });
+                _.EnableEndpointRouting = false;
+                _.Filters.Add(typeof(CustomExceptionFilterAttribute));
+            })
+            .AddDataAnnotations()
+            .AddAuthorization()
+            .AddNewtonsoftJson()
+            .AddApiExplorer();
 
             services.AddCors(options =>
             {
@@ -62,19 +56,11 @@ namespace epl.api
                 });
             });
 
-            IoC(services);
+            Authentication(services);
+            ConfigureRavenDB(services);
             ConfigureSwagger(services);
 
-
-            //services.AddScoped<DbContext, CommitmentsContext>();
-            //services.AddEntityFrameworkSqlServer()
-            //  .AddDbContext<CommitmentsContext>(options =>
-            //  {
-            //      options.UseSqlServer(Configuration.GetSection("ConnectionString").Value);
-            //  },
-            //  ServiceLifetime.Scoped);
-
-            //services.AddScoped<IRepository<Commitment>, ContextRepository<Commitment>>();
+            IoC(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,7 +72,7 @@ namespace epl.api
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(_ =>
             {
@@ -99,6 +85,38 @@ namespace epl.api
             app.UseAuthorization();
 
             app.UseMvcWithDefaultRoute();
+        }
+
+        private void Authentication(IServiceCollection services)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                        .AddJwtBearer(options =>
+                        {
+                            options.Authority = Configuration.GetSection("IdentityServer").GetValue<string>("URI");
+                            options.RequireHttpsMetadata = false;
+
+                            options.Audience = "epl.api";
+                        });
+
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = Configuration.GetSection("IdentityServer").GetValue<string>("URI");
+                options.RequireHttpsMetadata = false;
+
+                options.ClientId = Configuration.GetSection("IdentityServer").GetValue<string>("client_id");
+                options.ClientSecret = Configuration.GetSection("IdentityServer").GetValue<string>("client_secret");
+                options.ResponseType = "code";
+
+                options.SaveTokens = true;
+            });
         }
 
         private void IoC(IServiceCollection services)
@@ -127,6 +145,26 @@ namespace epl.api
                 {
                     Type = SecuritySchemeType.ApiKey
                 });
+            });
+        }
+
+        private void ConfigureRavenDB(IServiceCollection services)
+        {
+            var store = new DocumentStore
+            {
+                Urls = Configuration.GetSection("Database").GetSection("Urls").Get<string[]>(),
+                Database = Configuration.GetSection("Database").GetValue<string>("Name"),
+            };
+
+            store.Initialize();
+
+            services.AddSingleton<IDocumentStore>(store);
+
+            services.AddScoped<IAsyncDocumentSession>(serviceProvider =>
+            {
+                return serviceProvider
+                    .GetService<IDocumentStore>()
+                    .OpenAsyncSession();
             });
         }
     }

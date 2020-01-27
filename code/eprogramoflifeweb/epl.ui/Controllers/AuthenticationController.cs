@@ -1,20 +1,27 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using IdentityModel;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace epl.ui.Controllers
 {
     [Route("account")]
     public class AuthenticationController : ControllerBase
     {
-        private static string uri = "https://localhost:5001";
+        private readonly IConfiguration configuration;
+
+        public AuthenticationController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
 
         [HttpGet("token")]
         public async Task<IActionResult> Get()
         {
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(uri);
+            var disco = await client.GetDiscoveryDocumentAsync(configuration.GetSection("IdentityServer").GetValue<string>("URI"));
             if (disco.IsError)
             {
                 return Ok(disco.Error);
@@ -24,9 +31,9 @@ namespace epl.ui.Controllers
             {
                 Address = disco.TokenEndpoint,
 
-                ClientId = "epl.ui",
-                ClientSecret = "secret",
-                Scope = "epl.api"
+                ClientId = configuration.GetSection("IdentityServer").GetValue<string>("client_id"),
+                ClientSecret = configuration.GetSection("IdentityServer").GetValue<string>("client_secret"),
+                Scope = configuration.GetSection("IdentityServer").GetValue<string>("scope")
             });
 
             if (tokenResponse.IsError)
@@ -47,20 +54,23 @@ namespace epl.ui.Controllers
         {
             var client = new HttpClient();
 
-            var disco = await client.GetDiscoveryDocumentAsync(uri);
+            var disco = await client.GetDiscoveryDocumentAsync(configuration.GetSection("IdentityServer").GetValue<string>("URI"));
             if (disco.IsError)
             {
                 return Problem(disco.Error);
             }
 
-            // request token
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = username,
-                ClientSecret = password,
+                GrantType = OidcConstants.GrantTypes.Password,
 
-                Scope = "epl.api"
+                ClientId = configuration.GetSection("IdentityServer").GetValue<string>("client_id"),
+                ClientSecret = configuration.GetSection("IdentityServer").GetValue<string>("client_secret"),
+                Scope = configuration.GetSection("IdentityServer").GetValue<string>("scope"),
+
+                UserName = username,
+                Password = password.ToSha256()
             });
 
             if (tokenResponse.IsError)

@@ -32,6 +32,7 @@ import { AuthService } from './services/auth.service';
 
 // Components
 import { CommitmentComponent } from './components/commitment/commitment.component';
+import { CommitmentsComponent } from './components/commitments/commitments.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProgramOfLifeComponent } from './components/programoflife/programoflife.component';
 
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     CommitmentComponent,
+    CommitmentsComponent,
     ProgramOfLifeComponent
   ],
   imports: [

@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace epl.IdentityServer
                 new Client
                 {
                     ClientId = "epl.ui",
-                    AllowedGrantTypes = { GrantType.Implicit, GrantType.ClientCredentials },
+                    AllowedGrantTypes = { GrantType.Implicit, GrantType.ClientCredentials, GrantType.ResourceOwnerPassword },
                     AllowAccessTokensViaBrowser = true,
                     ClientSecrets =
                     {
@@ -46,7 +47,8 @@ namespace epl.IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "epl.api"
-                    }
+                    },
+                    AllowOfflineAccess = true
                 }
             };
         }
@@ -59,24 +61,29 @@ namespace epl.IdentityServer
                 {
                     SubjectId = "1",
                     Username = "alice",
-                    Password = "password",
+                    Password = "password".Sha256(),
+                    IsActive = true,
 
                     Claims = new List<Claim>
                     {
-                        new Claim("name", "Alice"),
-                        new Claim("website", "https://alice.com")
+                        new Claim(JwtClaimTypes.Id, "1"),
+                        new Claim(JwtClaimTypes.Name, "Alice"),
+                        new Claim(JwtClaimTypes.WebSite, "https://alice.com")
                     }
                 },
                 new TestUser
                 {
                     SubjectId = "2",
                     Username = "bob",
-                    Password = "password",
+                    Password = "password".Sha256(),
+                    IsActive = true,
+                    ProviderName = "Bob Test",
 
                     Claims = new List<Claim>
                     {
-                        new Claim("name", "Bob"),
-                        new Claim("website", "https://bob.com")
+                        new Claim(JwtClaimTypes.Id, "2"),
+                        new Claim(JwtClaimTypes.Name, "Bob"),
+                        new Claim(JwtClaimTypes.WebSite, "https://bob.com")
                     }
                 }
             };
