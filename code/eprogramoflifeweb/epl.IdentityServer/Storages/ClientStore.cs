@@ -24,9 +24,12 @@ namespace epl.IdentityServer.Storages
                 ClientId = appClient.ClientID,
                 AllowedGrantTypes = { GrantType.Implicit, GrantType.ClientCredentials, GrantType.ResourceOwnerPassword },
                 AllowAccessTokensViaBrowser = true,
-                ClientSecrets = appClient.ClientSecrets.Select(x => new Secret(x)).ToList(),
+                ClientSecrets = appClient.ClientSecrets.Select(x => new Secret(x.Sha256())).ToList(),
                 AllowedScopes = appClient.AllowedScopes,
-                AllowOfflineAccess = true
+                AllowOfflineAccess = true,
+                RedirectUris = { "https://localhost:4001/index.html" },
+                PostLogoutRedirectUris = { "https://localhost:4001/index.html" },
+                AllowedCorsOrigins = { "https://localhost:4001" }
             };
         }
     }

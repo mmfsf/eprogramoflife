@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthToken } from '../../auth/auth-token';
+import { AuthToken } from '../../auth/auth.token';
 
 // Models
 import { Commitment } from '../../models/commitment.model';

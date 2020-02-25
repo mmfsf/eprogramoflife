@@ -3,16 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProgramOfLifeComponent } from './components/programoflife/programoflife.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommitmentsComponent } from './components/commitments/commitments.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ProgramOfLifeComponent
-  },  
+    component: ProgramOfLifeComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'commitments',
-    component: CommitmentsComponent
+    component: CommitmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

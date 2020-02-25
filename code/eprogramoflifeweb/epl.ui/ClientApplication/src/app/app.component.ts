@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { AuthToken } from './auth/auth-token';
+import { AuthToken } from './auth/auth.token';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetToken();
+    if (!AuthToken.isLoggedIn()) {
+      this.GetToken();
+    }
   }
 
   public GetToken(): void {

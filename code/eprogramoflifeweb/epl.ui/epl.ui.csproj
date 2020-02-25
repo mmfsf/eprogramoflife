@@ -22,11 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApplication\src\app\auth\auth.guard.ts" />
     <None Remove="ClientApplication\src\app\models\deffects.model.ts" />
     <None Remove="ClientApplication\src\app\models\ProgramOfLife.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApplication\src\app\auth\auth.guard.ts" />
     <TypeScriptCompile Include="ClientApplication\src\app\models\deffects.model.ts" />
     <TypeScriptCompile Include="ClientApplication\src\app\models\ProgramOfLife.ts" />
   </ItemGroup>

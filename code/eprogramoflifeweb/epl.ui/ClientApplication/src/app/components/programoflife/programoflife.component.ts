@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import * as moment from "moment";
+// Models
 import { ProgramOfLife } from '../../models/ProgramOfLife';
 
 @Component({
@@ -13,7 +14,7 @@ export class ProgramOfLifeComponent {
   constructor() {
     this.program = new ProgramOfLife(0);
     this.program.Name = 'My program of life';
-    this.program.LastUpdate = new Date();
+    this.program.LastUpdate = moment().toDate();
     this.program.Motto = 'Donec pretium magna vitae felis iaculis, vel interdum magna dapibus. Cras eu mattis risus. Sed molestie nisl sed ante interdum faucibus. Nulla magna erat, sagittis eu dignissim vel, tristique nec elit. Maecenas placerat turpis a varius condimentum. Cras ultrices convallis ante sit amet molestie';
     this.program.Ideal = 'Curabitur iaculis massa eu ipsum iaculis volutpat';
     this.program.Virtue = 'Caritas';
@@ -22,6 +23,7 @@ export class ProgramOfLifeComponent {
     this.program.Means.push('Aliquam erat volutpat');
     this.program.Means.push('Proin varius quis augue a venenatis');
 
+    this.program.Deffects.Dominant = 'Consectetur';
     this.program.Deffects.God.push('Aenean dignissim metus non lacus porttitor sodales');
     this.program.Deffects.God.push('Donec purus nunc, commodo sit amet dictum id, vestibulum in quam');
     this.program.Deffects.God.push('Fusce aliquet massa non tellus hendrerit ultrices');
