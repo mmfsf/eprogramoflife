@@ -44,7 +44,3 @@ services:
 
 networks:
   epl-network:
-
-networks:
-  epl-network:
-    driver: bridge
