@@ -23,7 +23,7 @@ namespace epl.ui
 
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApplication/dist";
+                configuration.RootPath = "ClientApp/dist";
             });
         }
 
@@ -53,7 +53,7 @@ namespace epl.ui
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApplication";
+                spa.Options.SourcePath = "ClientApp";
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");

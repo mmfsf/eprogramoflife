@@ -41,8 +41,8 @@ namespace epl.ui.Controllers
                 return Ok(tokenResponse.Error);
             }
 
-            return Ok(new 
-            { 
+            return Ok(new
+            {
                 access_token = tokenResponse.AccessToken,
                 expires_in = tokenResponse.ExpiresIn,
                 token_type = tokenResponse.TokenType
