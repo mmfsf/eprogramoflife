@@ -78,6 +78,7 @@ namespace epl.IdentityServer
             services.AddTransient<IProfileService, ProfileService>();
 
             services.AddScoped<IAsyncRepository<Account>, RavenRepository<Account>>();
+            services.AddScoped<IAsyncRepository<User>, RavenRepository<User>>();
         }
     }
 }
