@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  epl.identityserver:
+    image: ${DOCKER_REGISTRY}eplidentityserver
+    container_name: epl-identityserver
+    build:
+      context: .
+      dockerfile: epl.IdentityServer/Dockerfile
+    networks:
+      - epl-network
+
+  epl.api:
+    image: ${DOCKER_REGISTRY}eplapi
+    container_name: epl-api
+    build:
+      context: .
+      dockerfile: epl.api/Dockerfile
+    depends_on:
+      - epl.database
+      - epl.identityserver
+    networks:
+      - epl-network
+
+  epl.reactui:
+    image: ${DOCKER_REGISTRY}eplui
+    container_name: epl-ui
+    build:
+      context: .
+      dockerfile: epl.ui/Dockerfile
+    depends_on:
+      - epl.identityserver
+    networks:
+      - epl-network
+
+  epl.database:
+    image: ${DOCKER_REGISTRY}epldatabase
+    container_name: epl-database
+    build:
+      context: .
+      dockerfile: epl.infrastructure/database-dockerfile
+    networks:
+      - epl-network
+
+networks:
+  epl-network:
