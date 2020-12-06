@@ -9,7 +9,7 @@ export class AuthToken {
   }
 
   public static GetToken(): Token {
-    var token = JSON.parse(localStorage.getItem("epl_token"));
+    const token = JSON.parse(String(localStorage.getItem("epl_token")));
     return token;
   }
 
@@ -18,9 +18,8 @@ export class AuthToken {
   }
 
   public static isLoggedIn(): boolean {
-    var token = JSON.parse(localStorage.getItem("epl_token"));
-   
-    return token != null &&
-           !moment().isBefore(token.expires_in);
+    const token = JSON.parse(String(localStorage.getItem("epl_token")));
+    return token !== null &&
+      !moment().isBefore(token.expires_in);
   }
 }

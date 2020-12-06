@@ -23,11 +23,11 @@ services:
       - epl-network
 
   epl.reactui:
-    image: ${DOCKER_REGISTRY}eplreactui
-    container_name: epl-reactui
+    image: ${DOCKER_REGISTRY}eplui
+    container_name: epl-ui
     build:
       context: .
-      dockerfile: epl.reactui/Dockerfile
+      dockerfile: epl.ui/Dockerfile
     depends_on:
       - epl.identityserver
     networks:

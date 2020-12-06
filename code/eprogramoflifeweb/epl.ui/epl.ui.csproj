@@ -4,7 +4,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
-    <SpaRoot>ClientApplication\</SpaRoot>
+    <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <UserSecretsId>5c85cef3-ead2-4375-9090-34903f530e8d</UserSecretsId>
   </PropertyGroup>
@@ -22,15 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApplication\src\app\auth\auth.guard.ts" />
-    <None Remove="ClientApplication\src\app\models\deffects.model.ts" />
-    <None Remove="ClientApplication\src\app\models\ProgramOfLife.ts" />
+    <None Remove="ClientApp\src\app\auth\auth.guard.ts" />
+    <None Remove="ClientApp\src\app\models\deffects.model.ts" />
+    <None Remove="ClientApp\src\app\models\ProgramOfLife.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApplication\src\app\auth\auth.guard.ts" />
-    <TypeScriptCompile Include="ClientApplication\src\app\models\deffects.model.ts" />
-    <TypeScriptCompile Include="ClientApplication\src\app\models\ProgramOfLife.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\auth\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\deffects.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\ProgramOfLife.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
