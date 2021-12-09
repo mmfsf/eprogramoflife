@@ -19,7 +19,7 @@ namespace epl.api.Controllers
 
         public CommitmentsController(IRepository<Commitment> repository)
         {
-            this.Repository = repository;
+            Repository = repository;
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace epl.api.Controllers
             {
                 result.Add(new CommitmentModel()
                 {
-                    Id = item.ID,
+                    Id = item.Id,
                     Name = item.Name,
                     Description = item.Description,
                     Frequency = item.Frequency,
@@ -46,10 +46,10 @@ namespace epl.api.Controllers
         [HttpPost]
         public IActionResult Point([FromBody] dynamic point)
         {
-            int id = point.id;
+            string id = point.id;
             bool done = point.done;
 
-            var item = this.Repository.Get(id);
+            var item = Repository.Get(id);
             item.Point(DateTime.Now, done ? Level.Done : Level.NotDone);
             this.Repository.Update(item);
             return Ok(item);

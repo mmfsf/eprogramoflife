@@ -1,8 +1,8 @@
-﻿using epl.core.Interfaces;
-using epl.IdentityServer.Models;
+﻿using epl.core.Domain;
+using epl.core.Interfaces;
 using epl.IdentityServer.Storages;
 using epl.IdentityServer.Validation;
-using epl.infrastructure.Repositories;
+using epl.infrastructure.RavenDb.Repositories;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Session;
 
 namespace epl.IdentityServer
 {
@@ -77,8 +76,7 @@ namespace epl.IdentityServer
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
             services.AddTransient<IProfileService, ProfileService>();
 
-            services.AddScoped<IAsyncRepository<Account>, RavenRepository<Account>>();
-            services.AddScoped<IAsyncRepository<User>, RavenRepository<User>>();
+            services.AddScoped<IAsyncRepository<Account>, AccountRavenRepository>();
         }
     }
 }

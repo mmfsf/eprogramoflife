@@ -1,5 +1,5 @@
-﻿using epl.core.Interfaces;
-using epl.IdentityServer.Models;
+﻿using epl.core.Domain;
+using epl.core.Interfaces;
 using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -13,9 +13,9 @@ namespace epl.IdentityServer.Storages
 {
     public class ProfileService : IProfileService
     {
-        private IAsyncRepository<User> repository;
+        private IAsyncRepository<Account> repository;
 
-        public ProfileService(IAsyncRepository<User> repository)
+        public ProfileService(IAsyncRepository<Account> repository)
         {
             this.repository = repository;
         }
@@ -35,7 +35,7 @@ namespace epl.IdentityServer.Storages
                         //set issued claims to return
                         context.IssuedClaims = new List<Claim>()
                         {
-                            new Claim(JwtClaimTypes.Id, user.SubjectId),
+                            new Claim(JwtClaimTypes.Id, user.Id.ToString()),
                             new Claim(JwtClaimTypes.Name, user.Username)
                         };
                     }
@@ -49,14 +49,14 @@ namespace epl.IdentityServer.Storages
                     if (!string.IsNullOrEmpty(userId?.Value) && long.Parse(userId.Value) > 0)
                     {
                         //get user from db (find user by user id)
-                        var user = await repository.Get(int.Parse(userId.Value));
+                        var user = await repository.Get(userId.Value);
 
                         // issue the claims for the user
                         if (user != null)
                         {
                             context.IssuedClaims = new List<Claim>()
                             {
-                                new Claim(JwtClaimTypes.Id, user.SubjectId),
+                                new Claim(JwtClaimTypes.Id, user.Id),
                                 new Claim(JwtClaimTypes.Name, user.Username)
                             };
                         }
@@ -79,7 +79,7 @@ namespace epl.IdentityServer.Storages
 
                 if (!string.IsNullOrEmpty(userId?.Value) && long.Parse(userId.Value) > 0)
                 {
-                    var user = await repository.Get(int.Parse(userId.Value));
+                    var user = await repository.Get(userId.Value);
 
                     if (user != null)
                     {

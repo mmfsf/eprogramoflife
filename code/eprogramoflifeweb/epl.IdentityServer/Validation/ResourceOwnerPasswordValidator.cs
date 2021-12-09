@@ -1,5 +1,5 @@
-﻿using epl.core.Interfaces;
-using epl.IdentityServer.Models;
+﻿using epl.core.Domain;
+using epl.core.Interfaces;
 using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
@@ -13,9 +13,9 @@ namespace epl.IdentityServer.Validation
 {
     public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
-        private IAsyncRepository<User> repository;
+        private IAsyncRepository<Account> repository;
 
-        public ResourceOwnerPasswordValidator(IAsyncRepository<User> repository)
+        public ResourceOwnerPasswordValidator(IAsyncRepository<Account> repository)
         {
             this.repository = repository;
         }
@@ -31,12 +31,12 @@ namespace epl.IdentityServer.Validation
                         //set the result
                         var claims = new List<Claim>()
                         {
-                            new Claim(JwtClaimTypes.Id, user.SubjectId),
+                            new Claim(JwtClaimTypes.Id, user.Id.ToString()),
                             new Claim(JwtClaimTypes.Name, user.Username)
                         };
 
                         context.Result = new GrantValidationResult(
-                            subject: user.SubjectId,
+                            subject: user.Id.ToString(),
                             authenticationMethod: "custom",
                             claims: claims);
 

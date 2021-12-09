@@ -1,17 +1,13 @@
-﻿using epl.core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace epl.core.Domain
 {
-    public class Person : IEntity
+    public class Person
     {
-        public int ID { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Account Account { get; set; }
         public ProgramOfLife ProgramOfLife { get; set; }
 
         public int Age
@@ -24,9 +20,8 @@ namespace epl.core.Domain
             }
         }
 
-        public Person(Account account)
+        public Person()
         {
-            Account = account;
             DateOfBirth = DateTime.MinValue;
         }
     }

@@ -19,7 +19,7 @@ namespace epl.api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(string id)
         {
             var program = repository.Get(id);
             return Ok(program);
@@ -41,9 +41,9 @@ namespace epl.api.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesDefaultResponseType]
-        public IActionResult Delete(int ID)
+        public IActionResult Delete(string Id)
         {
-            repository.Remove(ID);
+            repository.Remove(Id);
             return NoContent();
         }
     }

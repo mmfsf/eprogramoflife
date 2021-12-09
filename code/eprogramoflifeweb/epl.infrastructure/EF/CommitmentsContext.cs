@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace epl.infrastructure
+namespace epl.infrastructure.EF
 {
     public class CommitmentsContext : DbContext
     {
@@ -19,7 +19,7 @@ namespace epl.infrastructure
         {
             builder.Entity<Commitment>(e =>
             {
-                e.HasKey(k => k.ID);
+                e.HasKey(k => k.Id);
 
                 e.Property(p => p.Performed)
                 .HasConversion(

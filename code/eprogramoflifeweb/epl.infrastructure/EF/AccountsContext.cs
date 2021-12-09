@@ -1,7 +1,7 @@
 ﻿using epl.core.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace epl.infrastructure
+namespace epl.infrastructure.EF
 {
     public class AccountsContext : DbContext
     {

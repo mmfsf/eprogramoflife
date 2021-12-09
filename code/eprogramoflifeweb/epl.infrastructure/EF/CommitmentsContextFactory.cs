@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace epl.infrastructure
+namespace epl.infrastructure.EF
 {
     public class CommitmentsContextFactory : IDesignTimeDbContextFactory<CommitmentsContext>
     {

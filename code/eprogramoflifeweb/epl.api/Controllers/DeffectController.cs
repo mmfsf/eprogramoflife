@@ -7,31 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace epl.api.Controllers
 {
     [Authorize]
-    [Route("api/programoflife/{programoflifeid}/[controller]")]
+    [Route("api/programoflife/{programOfLifeId}/[controller]")]
     public class DeffectController : BaseController
     {
-        private readonly IRepository<Deffects> repository;
+        private readonly IAsyncRepository<ProgramOfLife> repository;
 
-        public DeffectController(IRepository<Deffects> repository)
+        public DeffectController(IAsyncRepository<ProgramOfLife> repository)
         {
             this.repository = repository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int ID)
-        {
-            var deffect = repository.Get(ID);
-            return Ok(deffect);
-        }
-
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create(string programOfLifeId)
         {
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update()
+        public IActionResult Update(string programOfLifeId)
         {
             return Ok();
         }
@@ -39,9 +32,9 @@ namespace epl.api.Controllers
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesDefaultResponseType]
-        public IActionResult Delete(int ID)
+        public IActionResult Delete(string programOfLifeId, string Id)
         {
-            repository.Remove(ID);
+            repository.Remove(Id);
             return NoContent();
         }
     }

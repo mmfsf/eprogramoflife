@@ -1,11 +1,9 @@
-﻿using epl.core.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-    public class Deffects : IEntity
+    public class Deffects
     {
-        public int ID { get; set; }
         public string DominantDefect { get; set; }
         public IList<string> WithGood { get; set; }
         public IList<string> WithMe { get; set; }

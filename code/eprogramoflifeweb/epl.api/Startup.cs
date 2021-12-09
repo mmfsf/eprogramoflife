@@ -1,21 +1,16 @@
 ﻿using epl.api.Filters;
 using epl.core.Domain;
 using epl.core.Interfaces;
-using epl.infrastructure;
-using epl.infrastructure.Repositories;
+using epl.infrastructure.RavenDb.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Session;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace epl.api
@@ -90,13 +85,13 @@ namespace epl.api
         private void Authentication(IServiceCollection services)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddJwtBearer(options =>
-                        {
-                            options.Authority = Configuration.GetSection("IdentityServer").GetValue<string>("URI");
-                            options.RequireHttpsMetadata = false;
+                    .AddJwtBearer(options =>
+                    {
+                        options.Authority = Configuration.GetSection("IdentityServer").GetValue<string>("URI");
+                        options.RequireHttpsMetadata = false;
 
-                            options.Audience = "epl.api";
-                        });
+                        options.Audience = "epl.api";
+                    });
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
@@ -121,7 +116,7 @@ namespace epl.api
 
         private void IoC(IServiceCollection services)
         {
-            services.AddSingleton<IRepository<Account>, MemoryRepository<Account>>();
+            services.AddScoped<IAsyncRepository<Account>, AccountRavenRepository>();
         }
 
         private void ConfigureSwagger(IServiceCollection services)
@@ -153,14 +148,14 @@ namespace epl.api
             var store = new DocumentStore
             {
                 Urls = Configuration.GetSection("Database").GetSection("Urls").Get<string[]>(),
-                Database = Configuration.GetSection("Database").GetValue<string>("Name"),
+                Database = Configuration.GetSection("Database").GetValue<string>("Name")
             };
 
             store.Initialize();
 
             services.AddSingleton<IDocumentStore>(store);
 
-            services.AddScoped<IAsyncDocumentSession>(serviceProvider =>
+            services.AddScoped(serviceProvider =>
             {
                 return serviceProvider
                     .GetService<IDocumentStore>()

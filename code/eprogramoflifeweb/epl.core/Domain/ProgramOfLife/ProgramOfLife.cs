@@ -1,12 +1,11 @@
-﻿using epl.core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace epl.core.Domain
 {
-    public class ProgramOfLife : IEntity
+    public class ProgramOfLife
     {
-        public int ID { get; set; }
+        public string Id { get; set; }
         public Person Person { get; set; }
         public string Name { get; set; }
         public string Motto { get; set; }
@@ -15,6 +14,7 @@ namespace epl.core.Domain
         public IList<string> Means { get; set; }
         public DateTime CreatedDate { get; }
         public Deffects Deffects { get; set; }
+        public IList<Commitment> Commitments { get; set; }
 
         public ProgramOfLife(Person person)
         {
@@ -22,6 +22,7 @@ namespace epl.core.Domain
             Means = new List<string>();
             CreatedDate = DateTime.Now;
             Deffects = new Deffects();
+            Commitments = new List<Commitment>();
         }
     }
 }

@@ -1,60 +1,59 @@
 ﻿using epl.api.Models;
 using epl.core.Domain;
 using epl.core.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace epl.api.Controllers
 {
-    [Authorize]
-    [Route("api/account/{accountid}/[controller]")]
+    [Route("api/account/{accountId}/[controller]")]
     public class PersonController : BaseController
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Person> repository;
+        private readonly IAsyncRepository<Person> repository;
+        private readonly IAsyncRepository<Account> accountRepository;
 
-        public PersonController(IRepository<Person> repository, IRepository<Account> accountRepository)
+        public PersonController(IAsyncRepository<Person> repository,
+                                IAsyncRepository<Account> accountRepository)
         {
             this.repository = repository;
             this.accountRepository = accountRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int ID)
-        {
-            var person = repository.Get(ID);
-            return Ok(person);
-        }
-
         [HttpPost]
-        public IActionResult Create([FromBody] PersonModel model)
+        public async Task<IActionResult> Create(string accountId, [FromBody] PersonModel model)
         {
             if (!ModelState.IsValid)
                 return Problem();
 
-            var person = new Person(accountRepository.Get(model.AccountID))
-            { 
+            var person = new Person()
+            {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 DateOfBirth = model.DateOfBirth
             };
-            repository.Add(person);
+
+            await repository.Add(person);
+            var account = await accountRepository.Get(accountId);
+            account.Person = person;
+
+            await accountRepository.Update(account);
 
             return Ok(person);
         }
 
+        [Route("api/[controller]")]
         [HttpPut]
-        public IActionResult Update([FromBody] PersonModel model)
+        public async Task<IActionResult> Update([FromBody] PersonModel model)
         {
             if (!ModelState.IsValid)
                 return Problem();
 
-            var person = repository.Get(model.ID);
+            var person = await repository.Get(model.Id);
             person.FirstName = model.FirstName;
             person.LastName = model.LastName;
             person.DateOfBirth = model.DateOfBirth;
 
-            repository.Update(person);
+            await repository.Update(person);
 
             return Ok();
         }

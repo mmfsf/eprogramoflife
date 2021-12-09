@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 namespace epl.core.Interfaces
 {
-    public interface IAsyncRepository<T> : IDisposable where T : class, IEntity
+    public interface IAsyncRepository<T> : IDisposable where T : class
     {
-        Task<T> Get(int ID);
+        Task<T> Get(string Id);
         Task<IList<T>> List();
         Task<T> Add(T entity);
         Task<T> Update(T entity);
-        Task Remove(T entity);
-        Task Remove(int ID);
+        void Remove(T entity);
+        void Remove(string Id);
     }
 }
