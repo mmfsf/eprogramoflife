@@ -1,84 +1,17 @@
-<mat-grid-list cols="2" rowHeight="250">
-  <mat-grid-tile colspan="1">
-    <p>Name:</p>
-    <h3>{{this.program.Name}}</h3>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-card>Simple card</mat-card>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <p>Last Update:</p>
-    <h3>{{this.program.LastUpdate | date:'shortDate'}}</h3>
+  <mat-grid-tile>
+    <mat-card>Simple card</mat-card>
+    <mat-card>Simple card</mat-card>
+    <mat-card>Simple card</mat-card>
   </mat-grid-tile>
-  <mat-grid-tile colspan="2" class="motto">
-    <p>Motto:</p>
-    <h4>{{this.program.Motto}}</h4>
+  <mat-grid-tile [colspan]="2">
+    <mat-tab-group>
+      <mat-tab label="First"> Content 1 </mat-tab>
+      <mat-tab label="Second"> Content 2 </mat-tab>
+    </mat-tab-group>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <p>Ideal:</p>
-    <h3>{{this.program.Ideal}}</h3>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <p>Virtue:</p>
-    <h3>{{this.program.Virtue}}</h3>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Means</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let mean of program.Means">
-            {{mean}}
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
-<mat-grid-list cols="3" rowHeight="300">
-  <mat-grid-tile colspan="3">
-    <p>Deffect Dominant:</p>
-    <h4>{{this.program.Deffects.Dominant}}</h4>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Good</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let deffect of program.Deffects.God">            
-            {{deffect}}
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Myself</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let deffect of program.Deffects.Myself">
-            {{deffect}}
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Others</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let deffect of program.Deffects.Others">
-            {{deffect}}
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2">4</mat-grid-tile>
 </mat-grid-list>

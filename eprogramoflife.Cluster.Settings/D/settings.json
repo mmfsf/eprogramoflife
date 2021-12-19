@@ -1,0 +1,11 @@
+{
+  "Security.UnsecuredAccessAllowed": "PrivateNetwork",
+  "License.Eula.Accepted": true,
+  "Security.Certificate.LetsEncrypt.Email": "marcosmiguel@outlook.com",
+  "Setup.Mode": "LetsEncrypt",
+  "Security.Certificate.Path": "cluster.server.certificate.eprogramoflife.pfx",
+  "ServerUrl": "https://172.17.0.2",
+  "ServerUrl.Tcp": "tcp://172.17.0.2:38888",
+  "PublicServerUrl": "https://d.eprogramoflife.ravendb.community",
+  "PublicServerUrl.Tcp": "tcp://d.eprogramoflife.ravendb.community:38888"
+}

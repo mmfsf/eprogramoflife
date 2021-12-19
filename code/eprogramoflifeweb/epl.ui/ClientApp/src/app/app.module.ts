@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -33,6 +34,7 @@ import { CommitmentComponent } from './components/commitment/commitment.componen
 import { CommitmentsComponent } from './components/commitments/commitments.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProgramOfLifeComponent } from './components/programoflife/programoflife.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     CommitmentComponent,
     CommitmentsComponent,
-    ProgramOfLifeComponent
+    ProgramOfLifeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatProgressSpinnerModule,
     MatInputModule,
     MatMenuModule,
+    MatTabsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
