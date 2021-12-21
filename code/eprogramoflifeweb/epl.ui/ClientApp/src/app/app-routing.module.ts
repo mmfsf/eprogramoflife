@@ -5,6 +5,7 @@ import { ProgramOfLifeComponent } from './components/programoflife/programoflife
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'programoflife', component: ProgramOfLifeComponent }
 ];
 

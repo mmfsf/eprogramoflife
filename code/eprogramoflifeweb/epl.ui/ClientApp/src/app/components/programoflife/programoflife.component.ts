@@ -11,9 +11,21 @@ import { ProgramOfLife } from '../../models/ProgramOfLife';
 })
 export class ProgramOfLifeComponent implements OnInit {
 
+  programOfLife: ProgramOfLife;
+
   constructor() {
   }
 
   ngOnInit(): void {
+    this.programOfLife = {
+      id = 0,
+      Name= '',
+      LastUpdate= new Date(),
+      Motto= '',
+      Ideal= '',
+      Virtue= '',
+      Means= [],
+      Deffects = null
+    };
   }
 }

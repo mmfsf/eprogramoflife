@@ -1,10 +1,14 @@
 <mat-grid-list cols="2">
   <mat-grid-tile>
-    <mat-card>Simple card</mat-card>
+    <!-- perfil component -->
+    <mat-card>
+      <mat-card-content>
+        <app-avatar [programOfLife]="programOfLife"/>
+      </mat-card-content>
+    </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>Simple card</mat-card>
-    <mat-card>Simple card</mat-card>
+    <!-- carousel component with:  Moto | Patrono | Infos(last confession, last update, etc.) -->
     <mat-card>Simple card</mat-card>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="2">
