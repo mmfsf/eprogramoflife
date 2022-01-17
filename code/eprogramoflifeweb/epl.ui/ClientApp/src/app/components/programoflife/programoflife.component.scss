@@ -1,13 +1,11 @@
-.motto {
-  background-color: #E8EAF6;
-  font-size: 2.5em;
-  font-style: italic;
-
-  textarea {
-    resize: none;
+.programoflife {
+  &-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
   }
-}
-
-.input-full-width {
-  width: 95%;
+  &-item {
+  }
+  &-sub-item {
+  }
 }

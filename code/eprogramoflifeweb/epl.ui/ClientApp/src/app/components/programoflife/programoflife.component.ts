@@ -14,18 +14,23 @@ export class ProgramOfLifeComponent implements OnInit {
   programOfLife: ProgramOfLife;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
     this.programOfLife = {
-      id = 0,
-      Name= '',
-      LastUpdate= new Date(),
-      Motto= '',
-      Ideal= '',
-      Virtue= '',
-      Means= [],
-      Deffects = null
+      id: 0,
+      Name: 'Marcos Farias',
+      LastUpdate: new Date(),
+      Motto: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+      Ideal: 'Phasellus pellentesque eros varius bibendum tempor',
+      Virtue: 'Fusce vel interdum lorem',
+      Means: [],
+      Deffects: {
+        id: 0,
+        Dominant: 'Cras vitae magna nunc',
+        God: [],
+        Myself: [],
+        Others: []
+      }
     };
   }
+
+  ngOnInit(): void {}
 }

@@ -38,7 +38,12 @@ export class CommitmentsComponent implements OnInit {
     this.common.GetCommitments().subscribe(res => {
       if (res.body !== null) {
         res.body.map(c => {
-          const commitment = new Commitment(c.id, c.name, c.description, c.frequency, c.pointed);
+          const commitment:Commitment = {
+            id: c.id,
+            name: c.name,
+            description: c.description,
+            frequency: c.frequency,
+            pointed: c.pointed};
           this.commitments.push(commitment);
         });
         this.rowspan = this.commitments.length + 5;

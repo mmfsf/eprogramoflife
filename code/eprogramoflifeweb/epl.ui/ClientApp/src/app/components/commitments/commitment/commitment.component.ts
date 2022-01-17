@@ -2,10 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
 
 // Services
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../../services/common.service';
 
 // Models
-import { Commitment } from '../../models/commitment.model';
+import { Commitment } from '../../../models/commitment.model';
 
 @Component({
   selector: 'app-commitment',

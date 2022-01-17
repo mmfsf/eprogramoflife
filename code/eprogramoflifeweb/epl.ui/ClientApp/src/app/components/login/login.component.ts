@@ -17,8 +17,6 @@ export class LoginComponent {
   constructor(private auth: AuthService, private router: Router) { }
 
   public login(username: string, password: string): void {
-    this.auth.Login(new Account(0, username, password)).subscribe(res => {
-      console.log(res.body);
-    });
+
   }
 }

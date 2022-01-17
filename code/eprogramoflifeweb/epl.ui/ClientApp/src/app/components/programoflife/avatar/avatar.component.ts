@@ -1,7 +1,6 @@
-import { OnInit } from '@angular/core';
+import { Input, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-// Models
-import { ProgramOfLife } from '../../models/ProgramOfLife';
+import { ProgramOfLife } from 'src/app/models/ProgramOfLife';
 
 @Component({
   selector: 'app-avatar',
