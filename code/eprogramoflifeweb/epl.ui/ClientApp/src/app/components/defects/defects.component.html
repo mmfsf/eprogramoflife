@@ -1,0 +1,35 @@
+<div class="defects-component">
+  <div>
+    <p>{{ defects.Dominant }}</p>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>{{ "DEFECTS.GOD" | translate }}</th>
+          <th>{{ "DEFECTS.MYSELF" | translate }}</th>
+          <th>{{ "DEFECTS.OTHERS" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              <li *ngFor="let item of defects.God">{{ item }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let item of defects.Myself">{{ item }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let item of defects.Others">{{ item }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

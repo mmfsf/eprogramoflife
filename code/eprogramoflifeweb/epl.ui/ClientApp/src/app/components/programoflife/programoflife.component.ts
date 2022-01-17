@@ -22,12 +22,12 @@ export class ProgramOfLifeComponent implements OnInit {
       Ideal: 'Phasellus pellentesque eros varius bibendum tempor',
       Virtue: 'Fusce vel interdum lorem',
       Means: [],
-      Deffects: {
+      Defects: {
         id: 0,
         Dominant: 'Cras vitae magna nunc',
-        God: [],
-        Myself: [],
-        Others: []
+        God: ['Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet'],
+        Myself: ['Phasellus sit amet suscipit justo', 'Phasellus sit amet suscipit justo'],
+        Others: ['Duis magna dui', 'Duis magna dui', 'Duis magna dui']
       }
     };
   }

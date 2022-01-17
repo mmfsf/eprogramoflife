@@ -1,0 +1,13 @@
+{
+  "COMMITMENTS": {
+    "DAILY": "Daily",
+    "WEEKLY": "Weekly",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly"
+  },
+  "DEFECTS": {
+    "GOD": "God",
+    "MYSELF": "Myself",
+    "OTHERS": "Others"
+  }
+}

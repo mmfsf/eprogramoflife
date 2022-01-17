@@ -11,5 +11,6 @@ import { CommitmentsComponent } from './commitments.component';
 @NgModule({
   imports: [CommonModule, MatCheckboxModule, MatGridListModule, SharedModule],
   declarations: [CommitmentComponent, CommitmentsComponent],
+  exports: [CommitmentsComponent]
 })
 export class CommitmentsModule {}

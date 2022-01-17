@@ -1,4 +1,4 @@
-import { Deffects } from '../models/deffects.model';
+import { Defects } from './defects.model';
 
 export interface ProgramOfLife {
   id: number;
@@ -8,5 +8,5 @@ export interface ProgramOfLife {
   Ideal: string;
   Virtue: string;
   Means: Array<string>;
-  Deffects: Deffects;
+  Defects: Defects;
 }

@@ -21,7 +21,6 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProgramOfLifeModule } from './components/programoflife/programoflife.module';
-import { CommitmentsModule } from './components/commitments/commitments.module';
 
 // SharedModules
 import { SharedModule } from './shared.module';
@@ -39,7 +38,6 @@ import { SharedModule } from './shared.module';
     MatToolbarModule,
     SharedModule,
     ProgramOfLifeModule,
-    CommitmentsModule,
   ],
   providers: [
     CommonService,

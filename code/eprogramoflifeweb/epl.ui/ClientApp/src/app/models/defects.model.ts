@@ -1,4 +1,4 @@
-export interface Deffects {
+export interface Defects {
   id: number;
   Dominant: string;
   God: Array<string>;

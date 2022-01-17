@@ -5,12 +5,11 @@ import { AuthToken } from '../../auth/auth.token';
 import { Commitment } from '../../models/commitment.model';
 // Services
 import { CommonService } from '../../services/common.service';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-commitments',
   templateUrl: './commitments.component.html',
-  styleUrls: ['./commitments.component.scss']
+  styleUrls: ['./commitments.component.scss'],
 })
 export class CommitmentsComponent implements OnInit {
   public commitments: Array<Commitment>;
@@ -20,40 +19,41 @@ export class CommitmentsComponent implements OnInit {
   public yearlyCommitment!: Array<Commitment>;
   public rowspan: number;
 
-  constructor(private common: CommonService, private auth: AuthService) {
+  constructor(private common: CommonService) {
     this.commitments = new Array<Commitment>();
     this.rowspan = 10;
   }
 
-  ngOnInit(): void {
-    this.auth.GetToken().subscribe(res => {
-      if (res.body !== null) {
-        AuthToken.Set(res.body);
-        this.GetCommitments();
-      }
-    })
-  }
+  ngOnInit(): void {}
 
   private GetCommitments() {
-    this.common.GetCommitments().subscribe(res => {
+    this.common.GetCommitments().subscribe((res) => {
       if (res.body !== null) {
-        res.body.map(c => {
-          const commitment:Commitment = {
+        res.body.map((c) => {
+          const commitment: Commitment = {
             id: c.id,
             name: c.name,
             description: c.description,
             frequency: c.frequency,
-            pointed: c.pointed};
+            pointed: c.pointed,
+          };
           this.commitments.push(commitment);
         });
         this.rowspan = this.commitments.length + 5;
 
-        this.dailyCommitment = this.commitments.filter(x => x.frequency === 0);
-        this.weeklyCommitment = this.commitments.filter(x => x.frequency === 1);
-        this.monthlyCommitment = this.commitments.filter(x => x.frequency === 2);
-        this.yearlyCommitment = this.commitments.filter(x => x.frequency === 4);
+        this.dailyCommitment = this.commitments.filter(
+          (x) => x.frequency === 0
+        );
+        this.weeklyCommitment = this.commitments.filter(
+          (x) => x.frequency === 1
+        );
+        this.monthlyCommitment = this.commitments.filter(
+          (x) => x.frequency === 2
+        );
+        this.yearlyCommitment = this.commitments.filter(
+          (x) => x.frequency === 4
+        );
       }
     });
   }
-
 }

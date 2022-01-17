@@ -4,8 +4,20 @@
     grid-template-columns: 50% 50%;
     grid-template-rows: auto;
   }
+
   &-item {
-  }
-  &-sub-item {
+    &-commitments,
+    &-deffects {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+    &-commitments {
+      grid-row-start: 3;
+    }
+
+    &-deffects {
+      grid-row-start: 2;
+    }
   }
 }
